@@ -1,3 +1,5 @@
+package com.oop.reguler.SiRental.view;
+
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
