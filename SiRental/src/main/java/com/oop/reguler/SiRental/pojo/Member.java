@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Member {
   
-  private int idMember;
+  private Integer idMember;
   private String nama;
   private char jenisKelamin;
   private String alamat;
@@ -12,15 +12,14 @@ public class Member {
   private double saldo;
   
   List<Mobil> listMobil;
+  
+  private Akun akun;
 
-  private String username;
-  private String password;
-
-  public int getIdMember() {
+  public Integer getIdMember() {
     return idMember;
   }
 
-  public void setIdMember(int idMember) {
+  public void setIdMember(Integer idMember) {
     this.idMember = idMember;
   }
 
@@ -64,22 +63,6 @@ public class Member {
     this.saldo = saldo;
   }
 
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-  
   public List<Mobil> getListMobil() {
     return listMobil;
   }
@@ -87,5 +70,12 @@ public class Member {
   public void setListMobil(List<Mobil> listMobil) {
     this.listMobil = listMobil;
   }
-  
+
+  public Akun getAkun() {
+    return akun;
+  }
+
+  public void setAkun(Akun akun) {
+    this.akun = akun;
+  }
 }

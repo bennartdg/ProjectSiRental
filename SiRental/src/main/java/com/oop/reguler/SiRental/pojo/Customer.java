@@ -3,23 +3,23 @@ package com.oop.reguler.SiRental.pojo;
 import java.util.List;
 
 public class Customer {
-  private int idCustomer;
+
+  private Integer idCustomer;
   private String nama;
   private char jenisKelamin;
   private String alamat;
   private String telepon;
   private double saldo;
-  
-  List<Mobil> listMobil;
-  
-  private String username;
-  private String password;
 
-  public int getIdCustomer() {
+  List<Mobil> listMobil;
+
+  private Akun akun;
+
+  public Integer getIdCustomer() {
     return idCustomer;
   }
 
-  public void setIdCostumer(int idCustomer) {
+  public void setIdCostumer(Integer idCustomer) {
     this.idCustomer = idCustomer;
   }
 
@@ -71,21 +71,12 @@ public class Customer {
     this.listMobil = listMobil;
   }
 
-  public String getUsername() {
-    return username;
+  public Akun getAkun() {
+    return akun;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setAkun(Akun akun) {
+    this.akun = akun;
   }
 
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-  
-  
 }

@@ -1,24 +1,17 @@
 package com.oop.reguler.SiRental.pojo;
 
 public class Admin {
-  private String username;
-  private String password;
+  private Integer idAdmin;
   private double saldo;
+  private boolean loginStatus;
+  private Akun akun;
 
-  public String getUsername() {
-    return username;
+  public Integer getIdAdmin() {
+    return idAdmin;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setIdAdmin(Integer idAdmin) {
+    this.idAdmin = idAdmin;
   }
 
   public double getSaldo() {
@@ -28,4 +21,21 @@ public class Admin {
   public void setSaldo(double saldo) {
     this.saldo = saldo;
   }
+
+  public boolean isLoginStatus() {
+    return loginStatus;
+  }
+
+  public void setLoginStatus(boolean loginStatus) {
+    this.loginStatus = loginStatus;
+  }
+
+  public Akun getAkun() {
+    return akun;
+  }
+
+  public void setAkun(Akun akun) {
+    this.akun = akun;
+  }
+  
 }

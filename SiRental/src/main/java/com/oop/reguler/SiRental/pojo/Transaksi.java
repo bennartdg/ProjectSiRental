@@ -3,7 +3,7 @@ package com.oop.reguler.SiRental.pojo;
 import java.util.Date;
 
 public class Transaksi {
-  private String idTransaksi;
+  private Integer idTransaksi;
   private Mobil mobil;
   private Member member;
   private Customer customer;
@@ -12,11 +12,11 @@ public class Transaksi {
   private int lamaPeminjaman;
   private double totalHarga;
 
-  public String getIdTransaksi() {
+  public Integer getIdTransaksi() {
     return idTransaksi;
   }
 
-  public void setIdTransaksi(String idTransaksi) {
+  public void setIdTransaksi(Integer idTransaksi) {
     this.idTransaksi = idTransaksi;
   }
 

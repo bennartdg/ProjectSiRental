@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Mobil {
 
-  private int idMobil;
+  private Integer idMobil;
   private Member member;
   private String platNo;
   private String merk;
