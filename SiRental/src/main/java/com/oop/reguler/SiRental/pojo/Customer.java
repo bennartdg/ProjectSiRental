@@ -13,6 +13,7 @@ public class Customer {
 
   List<Mobil> listMobil;
 
+  private boolean loginStatus;
   private Akun akun;
 
   public Integer getIdCustomer() {
@@ -71,6 +72,14 @@ public class Customer {
     this.listMobil = listMobil;
   }
 
+  public boolean getLoginStatus() {
+    return loginStatus;
+  }
+
+  public void setLoginStatus(boolean loginStatus) {
+    this.loginStatus = loginStatus;
+  }
+   
   public Akun getAkun() {
     return akun;
   }

@@ -46,13 +46,13 @@ public class LandingPageViewDemo {
       
       switch(menu){
         case 1 :
-          //TODO : LoginMemberViewDemo.login();
+          LoginMemberViewDemo.login();
           break;
         case 2 :
-          //TODO : LoginCustomerViewDemo.login();
+          LoginCustomerViewDemo.login();
           break;
         case 3 :
-          //TODO : AdminViewDemo.login();
+          LoginAdminViewDemo.login();
           break;
         case 0 :
           System.out.println("Keluar...");

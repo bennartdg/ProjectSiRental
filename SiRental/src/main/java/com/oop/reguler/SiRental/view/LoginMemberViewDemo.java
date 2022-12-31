@@ -4,28 +4,28 @@
  */
 package com.oop.reguler.SiRental.view;
 
-import com.oop.reguler.SiRental.pojo.Admin;
-import com.oop.reguler.SiRental.service.AdminService;
-import com.oop.reguler.SiRental.serviceimpl.AdminServiceImpl;
+import com.oop.reguler.SiRental.pojo.Member;
+import com.oop.reguler.SiRental.service.MemberService;
+import com.oop.reguler.SiRental.serviceimpl.MemberServiceImpl;
 import java.util.Scanner;
 
 /**
  *
  * @author Ben
  */
-public class LoginAdminViewDemo {
+public class LoginMemberViewDemo {
 
   public static void login() {
     Scanner scanner = new Scanner(System.in);
-    AdminService adminService = new AdminServiceImpl();
-    Admin admin;
-    
+    MemberService memberService = new MemberServiceImpl();
+    Member member;
+
     String username, password;
     boolean login = false;
 
     do {
       System.out.println("+---------------------------------------------------------------+");
-      System.out.println("| LOGIN ADMIN ");
+      System.out.println("| LOGIN MEMBER ");
       System.out.println("+---------------------------------------------------------------+");
       System.out.print("| Username : ");
       username = scanner.nextLine();
@@ -33,20 +33,19 @@ public class LoginAdminViewDemo {
       password = scanner.nextLine();
       System.out.println("+---------------------------------------------------------------+");
       System.out.println("");
-      
-      admin = adminService.login(username, password);
-      
-      if(admin != null){
+
+      member = memberService.login(username, password);
+
+      if (member != null) {
         login = true;
-        admin.setLoginStatus(true);
+        member.setLoginStatus(true);
         System.out.println("Login berhasil...!");
         System.out.println("");
-        // TODO : AdminViewDemo.menuAdmin(admin);
-      }else{
+        // TODO : MemberViewDemo.menuMember(member);
+      } else {
         System.out.println("Username atau Password Salah! Coba Lagi!");
       }
-      
-    } while (!login);
 
+    } while (!login);
   }
 }

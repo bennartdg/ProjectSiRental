@@ -26,15 +26,18 @@ public class MemberServiceImpl implements MemberService {
     private Connection conn;
     Statement stmt;
     ResultSet rs;
+    
     @Override
     public Member login(String username, String password) {
         Member member = null;
         Akun akun = null;
        
-        String sql = "SELECT AD.IDMEMBER, "
-            + "AK.IDAKUN, AK.USERNAME, AK.LEVEL "
-            + "FROM MEMBER AD, AKUN AK "
-            + "WHERE AD.IDAKUN = AK.IDAKUN "
+        String sql = "SELECT M.IDMEMBER, "
+            + "M.NAMA, M.JENISKELAMIN, M.ALAMAT, "
+            + "M.TELEPON, M.SALDO, "
+            + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
+            + "FROM MEMBER M, AKUN AK "
+            + "WHERE M.IDAKUN = AK.IDAKUN "
             + "AND AK.USERNAME = '" + username + "' "
             + "AND AK.PASSWORD = '" + password + "'";
     
@@ -48,6 +51,10 @@ public class MemberServiceImpl implements MemberService {
       while(rs.next()){
         member = new Member();
         member.setIdMember(rs.getInt("IDMEMBER"));
+        member.setNama(rs.getString("NAMA"));
+        member.setJenisKelamin(rs.getString("JENISKELAMIN").charAt(0));
+        member.setAlamat(rs.getString("ALAMAT"));
+        member.setTelepon(rs.getString("TELEPON"));
         member.setSaldo(rs.getDouble("SALDO"));
         
         akun = new Akun();

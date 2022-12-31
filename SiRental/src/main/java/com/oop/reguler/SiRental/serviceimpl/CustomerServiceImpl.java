@@ -4,9 +4,9 @@
  */
 package com.oop.reguler.SiRental.serviceimpl;
 
-import com.oop.reguler.SiRental.pojo.Admin;
 import com.oop.reguler.SiRental.pojo.Akun;
-import com.oop.reguler.SiRental.service.AdminService;
+import com.oop.reguler.SiRental.pojo.Customer;
+import com.oop.reguler.SiRental.service.CustomerService;
 import com.oop.reguler.SiRental.util.ConnectionManager;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Ben
  */
-public class AdminServiceImpl implements AdminService {
+public class CustomerServiceImpl implements CustomerService {
 
   private ConnectionManager conMan;
   private Connection conn;
@@ -27,13 +27,16 @@ public class AdminServiceImpl implements AdminService {
   ResultSet rs;
 
   @Override
-  public Admin login(String username, String password) {
-    Admin admin = null;
+  public Customer login(String username, String password) {
+    Customer customer = null;
     Akun akun = null;
-    String sql = "SELECT AD.IDADMIN, AD.SALDO, "
+
+    String sql = "SELECT C.IDCUSTOMER, "
+            + "C.NAMA, C.JENISKELAMIN, C.ALAMAT, "
+            + "C.TELEPON, C.SALDO, "
             + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
-            + "FROM ADMIN AD, AKUN AK "
-            + "WHERE AD.IDAKUN = AK.IDAKUN "
+            + "FROM CUSTOMER C, AKUN AK "
+            + "WHERE C.IDAKUN = AK.IDAKUN "
             + "AND AK.USERNAME = '" + username + "' "
             + "AND AK.PASSWORD = '" + password + "'";
 
@@ -45,9 +48,13 @@ public class AdminServiceImpl implements AdminService {
       rs = stmt.executeQuery(sql);
 
       while (rs.next()) {
-        admin = new Admin();
-        admin.setIdAdmin(rs.getInt("IDADMIN"));
-        admin.setSaldo(rs.getDouble("SALDO"));
+        customer = new Customer();
+        customer.setIdCostumer(rs.getInt("IDCUSTOMER"));
+        customer.setNama(rs.getString("NAMA"));
+        customer.setJenisKelamin(rs.getString("JENISKELAMIN").charAt(0));
+        customer.setAlamat(rs.getString("ALAMAT"));
+        customer.setTelepon(rs.getString("TELEPON"));
+        customer.setSaldo(rs.getDouble("SALDO"));
 
         akun = new Akun();
         akun.setId(rs.getInt("IDAKUN"));
@@ -55,15 +62,15 @@ public class AdminServiceImpl implements AdminService {
         akun.setUsername(rs.getString("PASSWORD"));
         akun.setLevel(rs.getString("LEVEL"));
 
-        admin.setAkun(akun);
+        customer.setAkun(akun);
       }
 
       conMan.disconnect();
     } catch (SQLException ex) {
-      Logger.getLogger(AdminServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(CustomerServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
     }
 
-    return admin;
+    return customer;
   }
 
 }

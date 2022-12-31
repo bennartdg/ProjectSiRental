@@ -22,7 +22,7 @@ public class Admin {
     this.saldo = saldo;
   }
 
-  public boolean isLoginStatus() {
+  public boolean getLoginStatus() {
     return loginStatus;
   }
 

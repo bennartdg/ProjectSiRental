@@ -3,16 +3,18 @@ package com.oop.reguler.SiRental.pojo;
 import java.util.List;
 
 public class Member {
-  
+
   private Integer idMember;
   private String nama;
   private char jenisKelamin;
   private String alamat;
   private String telepon;
   private double saldo;
-  
+
   List<Mobil> listMobil;
-  
+
+  private boolean loginStatus;
+
   private Akun akun;
 
   public Integer getIdMember() {
@@ -69,6 +71,14 @@ public class Member {
 
   public void setListMobil(List<Mobil> listMobil) {
     this.listMobil = listMobil;
+  }
+
+  public boolean getLoginStatus() {
+    return loginStatus;
+  }
+
+  public void setLoginStatus(boolean loginStatus) {
+    this.loginStatus = loginStatus;
   }
 
   public Akun getAkun() {
