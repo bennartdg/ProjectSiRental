@@ -1,6 +1,5 @@
 package com.oop.reguler.SiRental.view;
 
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,24 +7,24 @@ import java.util.Scanner;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author Ben
  */
 public class LandingPageViewDemo {
+
   private static Scanner scanner = new Scanner(System.in);
-  
+
   public static void main(String[] args) {
-    landingPageViewDemo();
+    landingPage();
   }
 
-  public static void landingPageViewDemo() {
+  public static void landingPage() {
     int menu = 0;
     boolean keluar = false;
     char pilihan;
-    
-    do{
+
+    do {
       System.out.println("+---------------------------------------------------------------+");
       System.out.println("|SI RENTAL - AplikaSi Rental Mobil Si paling Java, seJava Barat |");
       System.out.println("+---------------------------------------------------------------+");
@@ -37,49 +36,46 @@ public class LandingPageViewDemo {
       System.out.println("+---------------------------------------------------------------+");
       System.out.println("");
       System.out.print("Masukkan pilihan menu : ");
-      
-      try{
+
+      try {
         menu = scanner.nextInt();
-      }catch(InputMismatchException e){
+      } catch (InputMismatchException e) {
         System.out.println("Pilihan harus dalam Angka : " + e);
       }
-      
-      switch(menu){
-        case 1 :
+
+      switch (menu) {
+        case 1:
           LoginMemberViewDemo.login();
           break;
-        case 2 :
+        case 2:
           LoginCustomerViewDemo.login();
           break;
-        case 3 :
+        case 3:
           LoginAdminViewDemo.login();
           break;
-        case 0 :
+        case 0:
           System.out.println("Keluar...");
           exitMode();
           break;
-        default :
+        default:
+          System.out.println("Pilihan yang Anda masukkan Salah! Coba Lagi!");
           break;
       }
-      
+
       System.out.println("");
       System.out.print("Apakah ingin melanjutkan? [Y/N] : ");
       pilihan = scanner.next().charAt(0);
-      
-      if(pilihan == 'n' || pilihan == 'N'){
+
+      if (pilihan == 'n' || pilihan == 'N') {
         keluar = true;
       }
-      
-    }while(!keluar);
+
+    } while (!keluar);
     exitMode();
   }
 
-  private static void exitMode(){
+  private static void exitMode() {
     System.out.println("Terima kasih sudah pakai Si Rental!");
     System.exit(0);
-  }
-  
-  private static void defaultMode(){
-    System.out.println("Pilihan yang Anda masukkan Salah! Coba Lagi!");
   }
 }

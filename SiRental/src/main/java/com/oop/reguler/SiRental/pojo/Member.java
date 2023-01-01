@@ -14,7 +14,6 @@ public class Member {
   List<Mobil> listMobil;
 
   private boolean loginStatus;
-
   private Akun akun;
 
   public Integer getIdMember() {

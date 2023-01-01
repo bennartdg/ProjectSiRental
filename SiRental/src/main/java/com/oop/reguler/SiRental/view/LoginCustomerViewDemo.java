@@ -41,7 +41,7 @@ public class LoginCustomerViewDemo {
         customer.setLoginStatus(true);
         System.out.println("Login berhasil...!");
         System.out.println("");
-        // TODO : CustomerViewDemo.menuMember(member);
+        CustomerViewDemo.menuCustomer(customer);
       } else {
         System.out.println("Username atau Password Salah! Coba Lagi!");
       }

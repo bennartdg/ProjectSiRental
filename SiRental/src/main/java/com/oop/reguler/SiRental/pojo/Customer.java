@@ -20,7 +20,7 @@ public class Customer {
     return idCustomer;
   }
 
-  public void setIdCostumer(Integer idCustomer) {
+  public void setIdCustomer(Integer idCustomer) {
     this.idCustomer = idCustomer;
   }
 

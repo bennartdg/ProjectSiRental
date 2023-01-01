@@ -6,11 +6,12 @@ package com.oop.reguler.SiRental.service;
 
 import com.oop.reguler.SiRental.pojo.Mobil;
 import com.oop.reguler.SiRental.repository.CrudRepository;
+import com.oop.reguler.SiRental.repository.HargaRepository;
 
 /**
  *
  * @author SABRINA AZIZA UTAMI
  */
-public interface MobilService extends CrudRepository<Mobil, Object>{
+public interface MobilService extends CrudRepository<Mobil, Object>, HargaRepository<Mobil, Double>{
     
 }

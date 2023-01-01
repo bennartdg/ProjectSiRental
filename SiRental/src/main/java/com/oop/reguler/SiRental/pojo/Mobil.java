@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Mobil {
 
-  private Integer idMobil;
+  private int idMobil;
   private Member member;
   private String platNo;
   private String merk;
@@ -14,6 +14,7 @@ public class Mobil {
   private char transmisi;
   private int tahunKeluar;
   private double harga;
+  private String status;
   
   List<Customer> costumer;
 
@@ -103,6 +104,14 @@ public class Mobil {
 
   public void setHarga(double harga) {
     this.harga = harga;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 }

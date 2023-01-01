@@ -6,11 +6,12 @@ package com.oop.reguler.SiRental.service;
 
 import com.oop.reguler.SiRental.pojo.Customer;
 import com.oop.reguler.SiRental.repository.AkunRepository;
+import com.oop.reguler.SiRental.repository.CrudRepository;
 
 /**
  *
  * @author Ben
  */
-public interface CustomerService extends AkunRepository<Customer, Integer>{
+public interface CustomerService extends AkunRepository<Customer, Integer>, CrudRepository<Customer, Object>{
   
 }

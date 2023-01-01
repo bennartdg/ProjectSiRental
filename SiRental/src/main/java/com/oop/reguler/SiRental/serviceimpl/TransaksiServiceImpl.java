@@ -61,7 +61,7 @@ public class TransaksiServiceImpl implements TransaksiService{
                 member.setIdMember(rs.getInt("IDMEMBER"));
                 
                 customer = new Customer();
-                customer.setIdCostumer(rs.getInt("IDCUSTOMER"));
+                customer.setIdCustomer(rs.getInt("IDCUSTOMER"));
 
                 transaksi.setTanggalPesan(rs.getDate("TANGGALPESAN"));
                 transaksi.setTanggalKembali(rs.getDate("TANGGALKEMBALI"));
@@ -171,7 +171,7 @@ public class TransaksiServiceImpl implements TransaksiService{
                 member.setIdMember(rs.getInt("IDMEMBER"));
                 
                 customer = new Customer();
-                customer.setIdCostumer(rs.getInt("IDCUSTOMER"));
+                customer.setIdCustomer(rs.getInt("IDCUSTOMER"));
 
                 transaksi.setTanggalPesan(rs.getDate("TANGGALPESAN"));
                 transaksi.setTanggalKembali(rs.getDate("TANGGALKEMBALI"));
