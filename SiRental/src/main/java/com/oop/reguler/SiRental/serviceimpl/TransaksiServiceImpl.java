@@ -88,7 +88,7 @@ public class TransaksiServiceImpl implements TransaksiService {
 		int result = 0;
 		String sql = "INSERT INTO transaksi ("
 				+ "IDMOBIL, IDMEMBER, IDCUSTOMER, TANGGALPESAN, "
-				+ "LAMAPEMINJAMAN, "
+				+ "LAMAPEMINJAMAN, PAJAK, HARGADURASI, "
 				+ "TOTALHARGA) "
 				+ "VALUES ("
 				+ "'" + object.getMobil().getIdMobil() + "', "
@@ -96,7 +96,9 @@ public class TransaksiServiceImpl implements TransaksiService {
 				+ "'" + object.getCostumer().getIdCustomer() + "', "
 				+ "'" + object.getTanggalPesan() + "', "
 				+ "" + object.getLamaPeminjaman() + ", "
-				+ "'" + object.getTotalHarga() + "')";
+				+ "" + object.getPajak() + ", "
+				+ "" + object.getHargaDurasi() + ", "
+				+ "" + object.getTotalHarga() + ")";
 
 		conMan = new ConnectionManager();
 		conn = conMan.connect();
@@ -204,6 +206,71 @@ public class TransaksiServiceImpl implements TransaksiService {
 			Logger.getLogger(TransaksiServiceImpl.class.getName())
 					.log(Level.SEVERE, null, ex);
 		}
+		return result;
+	}
+
+	public Object returnMobilTanggal(Customer customer, Transaksi transaksi) {
+		int result = 0;
+
+		String sql = "UPDATE transaksi SET TANGGALKEMBALI = '"
+				+ transaksi.getTanggalKembali() + "' "
+				+ "WHERE IDTRANSAKSI = " + customer.getTransaksi().getIdTransaksi() + "";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
+
+		return result;
+	}
+
+	public Object updateSaldoAdmin(Transaksi transaksi) {
+		int result = 0;
+
+		String sql = "UPDATE admin SET SALDO = (SALDO + "
+				+ "" + transaksi.getPajak() + ")";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
+
+		return result;
+	}
+
+	public Object updateSaldoMember(Transaksi transaksi) {
+		int result = 0;
+
+		String sql = "UPDATE member SET SALDO = (SALDO + "
+				+ "" + transaksi.getHargaDurasi() + ") "
+				+ "WHERE IDMEMBER = " + transaksi.getMember().getIdMember() + "";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
+
 		return result;
 	}
 

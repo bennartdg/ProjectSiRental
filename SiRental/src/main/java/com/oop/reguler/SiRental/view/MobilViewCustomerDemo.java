@@ -50,6 +50,7 @@ public class MobilViewCustomerDemo {
 
     System.out.println("Menu :");
     System.out.println("[1] Pilih Mobil");
+    System.out.println("[2] Mobil yang disewa");
     System.out.println("[0] Kembali");
     System.out.print("Pilih Menu : ");
     menu = scanner.nextInt();
@@ -59,12 +60,70 @@ public class MobilViewCustomerDemo {
       case 1:
         pilihMobil(customer);
         break;
+      case 2:
+        mobilSewa(customer);
+        break;
       case 0:
         break;
       default:
         System.out.println("Menu tidak tersedia, silakan coba lagi!");
         break;
     }
+  }
+
+  public static void mobilSewa(Customer customer) {
+    Mobil mobil = new Mobil();
+    MobilServiceImpl mobilServiceImpl = new MobilServiceImpl();
+    scanner = new Scanner(System.in);
+
+    char pilihan;
+
+    System.out.println("Mobil yang Saya Sewa!");
+    try {
+      mobil = mobilServiceImpl.customerMobil(customer);
+
+      rincianMobil(mobil);
+
+      System.out.print("Kembalikan Mobil? [Y/N] : ");
+      pilihan = scanner.next().charAt(0);
+
+      if (pilihan == 'Y' || pilihan == 'y') {
+        try {
+          pengembalianMobil(customer);
+
+          System.out.println("Mobil Berhasil diKembalikan");
+        } catch (Exception e) {
+          System.out.println("Mobil Gagal diKembalikan! " + e);
+        }
+      }
+    } catch (Exception e) {
+      System.out.println("Mobil Tidak Ada!");
+    }
+  }
+
+  public static void pengembalianMobil(Customer customer) {
+    scanner = new Scanner(System.in);
+    Transaksi transaksi = new Transaksi();
+    TransaksiServiceImpl transaksiServiceImpl = new TransaksiServiceImpl();
+    MobilServiceImpl mobilServiceImpl = new MobilServiceImpl();
+    int id;
+
+    System.out.println("Tentukan Tanggal Kembali [dd-MM-YYYY]! ");
+    String tanggal;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    System.out.print("TANGGAL KEMBALI : ");
+    tanggal = scanner.nextLine();
+    LocalDate localDate = LocalDate.parse(tanggal, formatter);
+    String tanggalKembali = localDate.toString();
+
+    CustomerServiceImpl customerServiceImpl = new CustomerServiceImpl();
+    customer = customerServiceImpl.getAllAtribut(customer);
+    id = customer.getMobil().getIdMobil();
+    transaksi.setTanggalKembali(tanggalKembali);
+
+    transaksiServiceImpl.returnMobilTanggal(customer, transaksi);
+    mobilServiceImpl.updateStatusOn(id);
+
   }
 
   public static void pilihMobil(Customer customer) {
@@ -81,7 +140,7 @@ public class MobilViewCustomerDemo {
     try {
       MobilService mobilService = new MobilServiceImpl();
       mobil = mobilService.findById(id);
-      
+
       System.out.println("Mobil Terpilih!");
       System.out.println();
     } catch (Exception e) {
@@ -99,7 +158,6 @@ public class MobilViewCustomerDemo {
         System.out.println();
       }
     }
-
   }
 
   public static void lakukanTransaksi(Customer customer, Mobil mobil) {
@@ -142,11 +200,17 @@ public class MobilViewCustomerDemo {
     if (pilihan == 'Y' || pilihan == 'y') {
       try {
         transaksiService.create(transaksi);
+
+        // TODO : panggil saldoAdmin & saldoMember
+        TransaksiServiceImpl transaksiServiceImpl = new TransaksiServiceImpl();
+        transaksiServiceImpl.updateSaldoAdmin(transaksi);
+        transaksiServiceImpl.updateSaldoMember(transaksi);
+
         System.out.println("Transaksi Berhasil diLakukan!");
-        // Set status off
+
         MobilServiceImpl mobilServiceImpl = new MobilServiceImpl();
         mobilServiceImpl.updateStatusOff(transaksi.getMobil().getIdMobil());
-        // Set saldoCustomer - hargaTotal
+
         double tmpSaldoCustomer = customer.getSaldo();
         customer.setSaldo(tmpSaldoCustomer - transaksi.getTotalHarga());
 
@@ -169,7 +233,6 @@ public class MobilViewCustomerDemo {
     System.out.println("KAPASITAS       : " + mobil.getKapasitas());
     System.out.println("TRANSMISI       : " + mobil.getTransmisi());
     System.out.println("TAHUN KELUAR    : " + mobil.getTahunKeluar());
-    System.out.println("HARGA           : " + mobil.getHarga());
   }
 
   public static void rincianTransaksi(Transaksi transaksi, Mobil mobil) {
@@ -177,8 +240,13 @@ public class MobilViewCustomerDemo {
 
     rincianMobil(mobil);
 
+    System.out.println("HARGA           : " + mobil.getHarga());
     System.out.println("TANGGAL PESAN   : " + transaksi.getTanggalPesan());
     System.out.println("LAMA PEMINJAMAN : " + transaksi.getLamaPeminjaman());
+
+    transaksi.setPajak(hitungPajakTransaksi(transaksi));
+    transaksi.setHargaDurasi(hitungHargaLamaPeminjaman(transaksi));
+
     System.out.println("TOTAL PAJAK     : " + hitungPajakTransaksi(transaksi));
     System.out.println("HARGA LAMA PEMINJAMAN : " + hitungHargaLamaPeminjaman(transaksi));
     System.out.println("---------------------------------------(+)");
@@ -197,10 +265,12 @@ public class MobilViewCustomerDemo {
   }
 
   public static double hitungPajakTransaksi(Transaksi transaksi) {
-    return (0.1 * transaksi.getTotalHarga());
+    double pajak = (0.1 * transaksi.getTotalHarga());
+    return pajak;
   }
 
   public static double hitungHargaLamaPeminjaman(Transaksi transaksi) {
-    return (transaksi.getTotalHarga() * transaksi.getLamaPeminjaman());
+    double hargaLamaPeminjaman = (transaksi.getTotalHarga() * transaksi.getLamaPeminjaman());
+    return hargaLamaPeminjaman;
   }
 }

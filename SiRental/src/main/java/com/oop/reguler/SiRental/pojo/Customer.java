@@ -1,7 +1,5 @@
 package com.oop.reguler.SiRental.pojo;
 
-import java.util.List;
-
 public class Customer {
 
   private Integer idCustomer;
@@ -11,7 +9,8 @@ public class Customer {
   private String telepon;
   private double saldo;
 
-  List<Mobil> listMobil;
+  private Mobil mobil;
+  private Transaksi transaksi;
 
   private boolean loginStatus;
   private Akun akun;
@@ -64,12 +63,12 @@ public class Customer {
     this.saldo = saldo;
   }
 
-  public List<Mobil> getListMobil() {
-    return listMobil;
+  public Mobil getListMobil() {
+    return mobil;
   }
 
-  public void setListMobil(List<Mobil> listMobil) {
-    this.listMobil = listMobil;
+  public void setListMobil(Mobil mobil) {
+    this.mobil = mobil;
   }
 
   public boolean getLoginStatus() {
@@ -79,13 +78,29 @@ public class Customer {
   public void setLoginStatus(boolean loginStatus) {
     this.loginStatus = loginStatus;
   }
-   
+
   public Akun getAkun() {
     return akun;
   }
 
   public void setAkun(Akun akun) {
     this.akun = akun;
+  }
+
+  public Mobil getMobil() {
+    return mobil;
+  }
+
+  public void setMobil(Mobil mobil) {
+    this.mobil = mobil;
+  }
+
+  public Transaksi getTransaksi() {
+    return transaksi;
+  }
+
+  public void setTransaksi(Transaksi transaksi) {
+    this.transaksi = transaksi;
   }
 
 }

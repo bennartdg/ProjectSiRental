@@ -8,6 +8,8 @@ public class Transaksi {
   private String tanggalPesan;
   private String tanggalKembali;
   private int lamaPeminjaman;
+  private double pajak;
+  private double hargaDurasi;
   private double totalHarga;
 
   public Integer getIdTransaksi() {
@@ -72,6 +74,30 @@ public class Transaksi {
 
   public void setTotalHarga(double totalHarga) {
     this.totalHarga = totalHarga;
+  }
+
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
+
+  public double getPajak() {
+    return pajak;
+  }
+
+  public void setPajak(double pajak) {
+    this.pajak = pajak;
+  }
+
+  public double getHargaDurasi() {
+    return hargaDurasi;
+  }
+
+  public void setHargaDurasi(double hargaDurasi) {
+    this.hargaDurasi = hargaDurasi;
   }
 
 }

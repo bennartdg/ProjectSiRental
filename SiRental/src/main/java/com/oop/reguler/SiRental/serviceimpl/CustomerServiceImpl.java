@@ -6,6 +6,9 @@ package com.oop.reguler.SiRental.serviceimpl;
 
 import com.oop.reguler.SiRental.pojo.Akun;
 import com.oop.reguler.SiRental.pojo.Customer;
+import com.oop.reguler.SiRental.pojo.Member;
+import com.oop.reguler.SiRental.pojo.Mobil;
+import com.oop.reguler.SiRental.pojo.Transaksi;
 import com.oop.reguler.SiRental.service.CustomerService;
 import com.oop.reguler.SiRental.util.ConnectionManager;
 import java.sql.Connection;
@@ -220,6 +223,40 @@ public class CustomerServiceImpl implements CustomerService {
           .log(Level.SEVERE, null, ex);
     }
     return result;
+  }
+
+  public Customer getAllAtribut(Customer customer) {
+
+    String sql = "SELECT IDTRANSAKSI, IDMEMBER, IDMOBIL "
+        + "FROM transaksi WHERE IDCUSTOMER = " + customer.getIdCustomer() + "";
+
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery(sql);
+      while (rs.next()) {
+
+        Transaksi transaksi = new Transaksi();
+        Mobil mobil = new Mobil();
+        Member member = new Member();
+
+        transaksi.setIdTransaksi(rs.getInt("IDTRANSAKSI"));
+        member.setIdMember(rs.getInt("IDMEMBER"));
+        mobil.setMember(member);
+        mobil.setIdMobil(rs.getInt("IDMOBIL"));
+
+        customer.setTransaksi(transaksi);
+        customer.setMobil(mobil);
+      }
+      conMan.disconnect();
+    } catch (SQLException ex) {
+      Logger.getLogger(CustomerServiceImpl.class.getName())
+          .log(Level.SEVERE, null, ex);
+    }
+
+    return customer;
   }
 
 }

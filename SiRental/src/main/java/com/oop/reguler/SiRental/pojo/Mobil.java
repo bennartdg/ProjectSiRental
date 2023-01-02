@@ -1,11 +1,10 @@
 package com.oop.reguler.SiRental.pojo;
 
-import java.util.List;
-
 public class Mobil {
 
   private int idMobil;
   private Member member;
+  private Customer costumer;
   private String platNo;
   private String merk;
   private String warna;
@@ -15,14 +14,12 @@ public class Mobil {
   private int tahunKeluar;
   private double harga;
   private String status;
-  
-  List<Customer> costumer;
 
-  public List<Customer> getCostumer() {
+  public Customer getCostumer() {
     return costumer;
   }
 
-  public void setCostumer(List<Customer> costumer) {
+  public void setCostumer(Customer costumer) {
     this.costumer = costumer;
   }
 
