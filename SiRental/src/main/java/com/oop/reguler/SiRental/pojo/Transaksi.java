@@ -1,14 +1,12 @@
 package com.oop.reguler.SiRental.pojo;
 
-import java.util.Date;
-
 public class Transaksi {
   private Integer idTransaksi;
   private Mobil mobil;
   private Member member;
   private Customer customer;
-  private Date tanggalPesan;
-  private Date tanggalKembali;
+  private String tanggalPesan;
+  private String tanggalKembali;
   private int lamaPeminjaman;
   private double totalHarga;
 
@@ -44,19 +42,19 @@ public class Transaksi {
     this.customer = customer;
   }
 
-  public Date getTanggalPesan() {
+  public String getTanggalPesan() {
     return tanggalPesan;
   }
 
-  public void setTanggalPesan(Date tanggalPesan) {
+  public void setTanggalPesan(String tanggalPesan) {
     this.tanggalPesan = tanggalPesan;
   }
 
-  public Date getTanggalKembali() {
+  public String getTanggalKembali() {
     return tanggalKembali;
   }
 
-  public void setTanggalKembali(Date tanggalKembali) {
+  public void setTanggalKembali(String tanggalKembali) {
     this.tanggalKembali = tanggalKembali;
   }
 
@@ -75,6 +73,5 @@ public class Transaksi {
   public void setTotalHarga(double totalHarga) {
     this.totalHarga = totalHarga;
   }
-  
-  
+
 }

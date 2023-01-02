@@ -23,190 +23,188 @@ import java.util.logging.Logger;
  *
  * @author SABRINA AZIZA UTAMI
  */
-public class TransaksiServiceImpl implements TransaksiService{
-    private ConnectionManager conMan;
-    private Connection conn;
-    Statement stmt;
-    ResultSet rs;
+public class TransaksiServiceImpl implements TransaksiService {
+	private ConnectionManager conMan;
+	private Connection conn;
+	Statement stmt;
+	ResultSet rs;
 
-    @Override
-    public List<Transaksi> findAll() {
-       List<Transaksi> listTransaksi = new ArrayList<>();
-        Transaksi transaksi = null;
-        Member member = null;
-        Mobil mobil =  null;
-        Customer customer = null;
-        
-        String sql = "SELECT tf.IDTRANSAKSI, mbl.IDMOBIL, mbr.IDMEMBER, cs.IDCUSTOMER, tf.TANGGALPESAN, "
-                + "tf.TANGGALKEMBALI, tf.LAMAPEMINJAMAN, tf.TOTALHARGA "
-                + "FROM transaksi tf, mobil mbl, member mbr, customer cs "
-                + "WHERE mbl.IDMEMBER=mbr.IDMEMBER AND mbr.IDMEMBER=tf.IDMEMBER "
-                + "AND mbl.IDMOBIL=tf.IDMOBIL AND tf.IDCUSTOMER = cs.IDCUSTOMER;";
-        
-        conMan = new ConnectionManager();
-        conn = conMan.connect();
-        
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            
-            while (rs.next()) {                
-                transaksi = new Transaksi();
-                transaksi.setIdTransaksi(rs.getInt("IDTRANSAKSI"));
+	@Override
+	public List<Transaksi> findAll() {
+		List<Transaksi> listTransaksi = new ArrayList<>();
+		Transaksi transaksi = null;
+		Member member = null;
+		Mobil mobil = null;
+		Customer customer = null;
 
-                mobil = new Mobil();
-                mobil.setIdMobil(rs.getInt("IDMOBIL"));
+		String sql = "SELECT tf.IDTRANSAKSI, mbl.IDMOBIL, mbr.IDMEMBER, cs.IDCUSTOMER, tf.TANGGALPESAN, "
+				+ "tf.TANGGALKEMBALI, tf.LAMAPEMINJAMAN, tf.TOTALHARGA "
+				+ "FROM transaksi tf, mobil mbl, member mbr, customer cs "
+				+ "WHERE mbl.IDMEMBER=mbr.IDMEMBER AND mbr.IDMEMBER=tf.IDMEMBER "
+				+ "AND mbl.IDMOBIL=tf.IDMOBIL AND tf.IDCUSTOMER = cs.IDCUSTOMER;";
 
-                member = new Member();
-                member.setIdMember(rs.getInt("IDMEMBER"));
-                
-                customer = new Customer();
-                customer.setIdCustomer(rs.getInt("IDCUSTOMER"));
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
 
-                transaksi.setTanggalPesan(rs.getDate("TANGGALPESAN"));
-                transaksi.setTanggalKembali(rs.getDate("TANGGALKEMBALI"));
-                transaksi.setLamaPeminjaman(rs.getInt("LAMAPEMINJAMAN"));
-                transaksi.setTotalHarga(rs.getDouble("TOTALHARGA"));
-                
-                transaksi.setMobil(mobil);
-                transaksi.setMember(member);
-                transaksi.setCostumer(customer);
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
 
-                listTransaksi.add(transaksi);
-            }
-            conMan.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(TransaksiServiceImpl.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
-        
-        return listTransaksi;
-    }
+			while (rs.next()) {
+				transaksi = new Transaksi();
+				transaksi.setIdTransaksi(rs.getInt("IDTRANSAKSI"));
 
-    @Override
-    public Object create(Transaksi object) {
-        int result = 0;
-        String sql = "INSERT INTO transaksi (IDTRANSAKSI, "
-                + "IDMOBIL, IDMEMBER, IDCUSTOMER, TANGGALPESAN, "
-                + "TANGGALKEMBALI, LAMAPEMINJAMAN, "
-                + "TOTALHARGA) "
-                + "VALUES ('"+object.getIdTransaksi()+"', "
-                + "'"+object.getMobil().getIdMobil()+"', "
-                + "'"+object.getMember().getIdMember()+"', "
-                + "'"+object.getCostumer().getIdCustomer()+"', "
-                + ""+object.getTanggalPesan()+", "
-                + ""+object.getTanggalKembali()+", "
-                + "'"+object.getLamaPeminjaman()+"', "
-                + "'"+object.getTotalHarga()+"');";
-        
-        conMan = new ConnectionManager();
-        conn = conMan.connect();
-        
-        try {
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-            conMan.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(TransaksiServiceImpl.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
-        return result;
-    }
+				mobil = new Mobil();
+				mobil.setIdMobil(rs.getInt("IDMOBIL"));
 
-    @Override
-    public Object update(Transaksi object) {
-        int result = 0;
-        String sql = "UPDATE transaksi SET TOTALHARGA='"+object.getTotalHarga()+"', "
-                + "LAMAPEMINJAMAN='"+object.getLamaPeminjaman()+"', "
-                + "TANGGALKEMBALI="+object.getTanggalKembali()+", "
-                + "TANGGALPESAN="+object.getTanggalPesan()+", "
-                + "IDCUSTOMER='"+object.getCostumer().getIdCustomer()+"', "
-                + "IDMEMBER='"+object.getMember().getIdMember()+"', "
-                + "IDMOBIL='"+object.getMobil().getIdMobil()+"', "
-                + "WHERE IDTRANSAKSI='"+object.getIdTransaksi()+"'";
-        
-        conMan = new ConnectionManager();
-        conn = conMan.connect();
-        
-        try {
-            stmt = conn.createStatement();
-            result = stmt.executeUpdate(sql);
-            conMan.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(MobilServiceImpl.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
-        return result;
-    }
+				member = new Member();
+				member.setIdMember(rs.getInt("IDMEMBER"));
 
-    @Override
-    public Transaksi findById(int id) {
-        Transaksi transaksi = null;
-        Member member = null;
-        Mobil mobil =  null;
-        Customer customer = null;
-        
-        String sql = "SELECT tf.IDTRANSAKSI, mbl.IDMOBIL, mbr.IDMEMBER, cs.IDCUSTOMER, tf.TANGGALPESAN, "
-                + "tf.TANGGALKEMBALI, tf.LAMAPEMINJAMAN, tf.TOTALHARGA "
-                + "FROM transaksi tf, mobil mbl, member mbr, customer cs "
-                + "WHERE mbl.IDMEMBER=mbr.IDMEMBER AND mbr.IDMEMBER=tf.IDMEMBER "
-                + "AND mbl.IDMOBIL=tf.IDMOBIL AND tf.IDCUSTOMER = cs.IDCUSTOMER "
-                + "AND tf.IDRANSAKSI="+id+"";
-        
-        conMan = new ConnectionManager();
-        conn = conMan.connect();
-        
-        try {
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(sql);
-            
-            while (rs.next()) {
-                transaksi = new Transaksi();
-                transaksi.setIdTransaksi(rs.getInt("IDTRANSAKSI"));
+				customer = new Customer();
+				customer.setIdCustomer(rs.getInt("IDCUSTOMER"));
 
-                mobil = new Mobil();
-                mobil.setIdMobil(rs.getInt("IDMOBIL"));
+				transaksi.setTanggalPesan(rs.getString("TANGGALPESAN"));
+				transaksi.setTanggalKembali(rs.getString("TANGGALKEMBALI"));
+				transaksi.setLamaPeminjaman(rs.getInt("LAMAPEMINJAMAN"));
+				transaksi.setTotalHarga(rs.getDouble("TOTALHARGA"));
 
-                member = new Member();
-                member.setIdMember(rs.getInt("IDMEMBER"));
-                
-                customer = new Customer();
-                customer.setIdCustomer(rs.getInt("IDCUSTOMER"));
+				transaksi.setMobil(mobil);
+				transaksi.setMember(member);
+				transaksi.setCostumer(customer);
 
-                transaksi.setTanggalPesan(rs.getDate("TANGGALPESAN"));
-                transaksi.setTanggalKembali(rs.getDate("TANGGALKEMBALI"));
-                transaksi.setLamaPeminjaman(rs.getInt("LAMAPEMINJAMAN"));
-                transaksi.setTotalHarga(rs.getDouble("TOTALHARGA"));
-                
-                transaksi.setMobil(mobil);
-                transaksi.setMember(member);
-                transaksi.setCostumer(customer);
-            }
-            conMan.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(TransaksiServiceImpl.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
-        return transaksi;
-    }
+				listTransaksi.add(transaksi);
+			}
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
 
-    @Override
-    public Object delete(int id) {
-        int result = 0;
-        String sql = "DELETE FROM transaksi WHERE IDTRANSAKSI="+id+"";
-        
-        conMan = new ConnectionManager();
-        conn = conMan.connect();
-        
-        try {
-            stmt = conn.createStatement();
-            result = stmt.executeUpdate(sql);
-            conMan.disconnect();
-        } catch (SQLException ex) {
-            Logger.getLogger(TransaksiServiceImpl.class.getName())
-                    .log(Level.SEVERE, null, ex);
-        }
-        return result;
-    }
-    
+		return listTransaksi;
+	}
+
+	@Override
+	public Object create(Transaksi object) {
+		int result = 0;
+		String sql = "INSERT INTO transaksi ("
+				+ "IDMOBIL, IDMEMBER, IDCUSTOMER, TANGGALPESAN, "
+				+ "LAMAPEMINJAMAN, "
+				+ "TOTALHARGA) "
+				+ "VALUES ("
+				+ "'" + object.getMobil().getIdMobil() + "', "
+				+ "'" + object.getMember().getIdMember() + "', "
+				+ "'" + object.getCostumer().getIdCustomer() + "', "
+				+ "'" + object.getTanggalPesan() + "', "
+				+ "" + object.getLamaPeminjaman() + ", "
+				+ "'" + object.getTotalHarga() + "')";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
+		return result;
+	}
+
+	@Override
+	public Object update(Transaksi object) {
+		int result = 0;
+		String sql = "UPDATE transaksi SET TOTALHARGA='" + object.getTotalHarga() + "', "
+				+ "LAMAPEMINJAMAN='" + object.getLamaPeminjaman() + "', "
+				+ "TANGGALKEMBALI=" + object.getTanggalKembali() + ", "
+				+ "TANGGALPESAN=" + object.getTanggalPesan() + ", "
+				+ "IDCUSTOMER='" + object.getCostumer().getIdCustomer() + "', "
+				+ "IDMEMBER='" + object.getMember().getIdMember() + "', "
+				+ "IDMOBIL='" + object.getMobil().getIdMobil() + "', "
+				+ "WHERE IDTRANSAKSI='" + object.getIdTransaksi() + "'";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(MobilServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return result;
+	}
+
+	@Override
+	public Transaksi findById(int id) {
+		Transaksi transaksi = null;
+		Member member = null;
+		Mobil mobil = null;
+		Customer customer = null;
+
+		String sql = "SELECT tf.IDTRANSAKSI, mbl.IDMOBIL, mbr.IDMEMBER, cs.IDCUSTOMER, tf.TANGGALPESAN, "
+				+ "tf.TANGGALKEMBALI, tf.LAMAPEMINJAMAN, tf.TOTALHARGA "
+				+ "FROM transaksi tf, mobil mbl, member mbr, customer cs "
+				+ "WHERE mbl.IDMEMBER=mbr.IDMEMBER AND mbr.IDMEMBER=tf.IDMEMBER "
+				+ "AND mbl.IDMOBIL=tf.IDMOBIL AND tf.IDCUSTOMER = cs.IDCUSTOMER "
+				+ "AND tf.IDRANSAKSI=" + id + "";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+				transaksi = new Transaksi();
+				transaksi.setIdTransaksi(rs.getInt("IDTRANSAKSI"));
+
+				mobil = new Mobil();
+				mobil.setIdMobil(rs.getInt("IDMOBIL"));
+
+				member = new Member();
+				member.setIdMember(rs.getInt("IDMEMBER"));
+
+				customer = new Customer();
+				customer.setIdCustomer(rs.getInt("IDCUSTOMER"));
+
+				transaksi.setTanggalPesan(rs.getString("TANGGALPESAN"));
+				transaksi.setTanggalKembali(rs.getString("TANGGALKEMBALI"));
+				transaksi.setLamaPeminjaman(rs.getInt("LAMAPEMINJAMAN"));
+				transaksi.setTotalHarga(rs.getDouble("TOTALHARGA"));
+
+				transaksi.setMobil(mobil);
+				transaksi.setMember(member);
+				transaksi.setCostumer(customer);
+			}
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
+		return transaksi;
+	}
+
+	@Override
+	public Object delete(int id) {
+		int result = 0;
+		String sql = "DELETE FROM transaksi WHERE IDTRANSAKSI = " + id + "";
+
+		conMan = new ConnectionManager();
+		conn = conMan.connect();
+
+		try {
+			stmt = conn.createStatement();
+			result = stmt.executeUpdate(sql);
+			conMan.disconnect();
+		} catch (SQLException ex) {
+			Logger.getLogger(TransaksiServiceImpl.class.getName())
+					.log(Level.SEVERE, null, ex);
+		}
+		return result;
+	}
+
 }

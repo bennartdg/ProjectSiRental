@@ -12,6 +12,6 @@ import com.oop.reguler.SiRental.repository.HargaRepository;
  *
  * @author SABRINA AZIZA UTAMI
  */
-public interface MobilService extends CrudRepository<Mobil, Object>, HargaRepository<Mobil, Double>{
-    
+public interface MobilService extends CrudRepository<Mobil, Object> {
+
 }

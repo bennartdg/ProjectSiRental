@@ -39,7 +39,7 @@ public class CustomerViewDemo {
 
       switch (menu) {
         case 1:
-          MobilViewDemo.menuCustomerMobil();
+          MobilViewCustomerDemo.menuCustomerMobil(customer);
           break;
         case 2:
           ProfilViewDemo.customerProfil(customer);

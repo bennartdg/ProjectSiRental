@@ -76,7 +76,7 @@ public class MobilServiceImpl implements MobilService {
     String sql = "SELECT mbl.IDMOBIL, mbl.PLATNO, "
         + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
         + "mbl.TAHUNKELUAR, mbl.HARGA, mbl.STATUS "
-        + "FROM mobil mbl, member mbr "
+        + "FROM mobil mbl "
         + "WHERE mbl.IDMEMBER = " + member.getIdMember();
 
     conMan = new ConnectionManager();
@@ -115,21 +115,21 @@ public class MobilServiceImpl implements MobilService {
   public Object create(Mobil object) {
     int result = 0;
 
-    // Untuk Set harga Otomatis
-    String sql = "INSERT INTO mobil (IDMOBIL, "
+    String sql = "INSERT INTO mobil ("
         + "IDMEMBER, PLATNO, MERK, WARNA, "
         + "JENIS, KAPASITAS, TRANSMISI, "
-        + "TAHUNKELUAR, HARGA) "
-        + "VALUES ('" + object.getIdMobil() + "', "
-        + "'" + object.getMember().getIdMember() + "', "
-        + "" + object.getPlatNo() + ", "
-        + "" + object.getMerk() + ", "
-        + "" + object.getWarna() + ", "
-        + "" + object.getJenis() + ", "
-        + "'" + object.getKapasitas() + "', "
-        + "" + object.getTransmisi() + ", "
-        + "'" + object.getTahunKeluar() + "', "
-        + "'" + object.getHarga() + "');";
+        + "TAHUNKELUAR, HARGA, STATUS) "
+        + "VALUES ("
+        + "" + object.getMember().getIdMember() + ", "
+        + "'" + object.getPlatNo() + "', "
+        + "'" + object.getMerk() + "', "
+        + "'" + object.getWarna() + "', "
+        + "'" + object.getJenis() + "', "
+        + "" + object.getKapasitas() + ", "
+        + "'" + object.getTransmisi() + "', "
+        + "" + object.getTahunKeluar() + ", "
+        + "" + object.getHarga() + ", "
+        + "'ON')";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -142,23 +142,24 @@ public class MobilServiceImpl implements MobilService {
       Logger.getLogger(MobilServiceImpl.class.getName())
           .log(Level.SEVERE, null, ex);
     }
+
     return result;
   }
 
   @Override
   public Object update(Mobil object) {
     int result = 0;
-    String sql = "UPDATE mobil SET harga='" + object.getHarga() + "', "
-        + "HARGA='" + object.getHarga() + "', "
-        + "TAHUNKELUAR='" + object.getTahunKeluar() + "', "
-        + "TRANSMISI=" + object.getTransmisi() + ", "
-        + "KAPASITAS='" + object.getKapasitas() + "', "
-        + "JENIS=" + object.getJenis() + ", "
-        + "WARNA=" + object.getWarna() + ", "
-        + "MERK=" + object.getMerk() + ", "
-        + "PLATNO=" + object.getPlatNo() + ", "
-        + "IDMEMBER=" + object.getMember().getIdMember() + " "
-        + "WHERE IDMOBIL=" + object.getIdMobil() + "";
+
+    String sql = "UPDATE mobil SET "
+        + "PLATNO = '" + object.getPlatNo() + "', "
+        + "MERK = '" + object.getMerk() + "', "
+        + "WARNA = '" + object.getWarna() + "', "
+        + "JENIS = '" + object.getJenis() + "', "
+        + "KAPASITAS = '" + object.getKapasitas() + "', "
+        + "TRANSMISI = '" + object.getTransmisi() + "', "
+        + "TAHUNKELUAR = " + object.getTahunKeluar() + ", "
+        + "HARGA = " + object.getHarga() + " "
+        + "WHERE IDMOBIL = " + object.getIdMobil() + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -178,12 +179,12 @@ public class MobilServiceImpl implements MobilService {
     Mobil mobil = null;
     Member member = null;
 
-    String sql = "SELECT mbl.IDMOBIL, mbr.IDMEMBER, mbl.PLATNO "
-        + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI "
+    String sql = "SELECT mbl.IDMOBIL, mbr.IDMEMBER, mbl.PLATNO, "
+        + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
         + "mbl.TAHUNKELUAR, mbl.HARGA "
         + "FROM mobil mbl, member mbr "
         + "WHERE mbl.IDMEMBER = mbr.IDMEMBER "
-        + "AND mbl.IDMOBIL=" + id + "";
+        + "AND mbl.IDMOBIL = " + id + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -221,7 +222,7 @@ public class MobilServiceImpl implements MobilService {
   @Override
   public Object delete(int id) {
     int result = 0;
-    String sql = "DELETE FROM mobil WHERE IDMOBIL=" + id + "";
+    String sql = "DELETE FROM mobil WHERE IDMOBIL= " + id + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -238,9 +239,39 @@ public class MobilServiceImpl implements MobilService {
 
   }
 
-  @Override
-  public Double hitungHarga(Mobil object) {
-    throw new UnsupportedOperationException("Not supported yet."); // Generated from
-                                                                   // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  public Object updateStatusOn(int id) {
+    int result = 0;
+    String sql = "UPDATE mobil SET STATUS = 'ON' WHERE IDMOBIL = " + id + "";
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      result = stmt.executeUpdate(sql);
+      conMan.disconnect();
+    } catch (SQLException ex) {
+      Logger.getLogger(MobilServiceImpl.class.getName())
+          .log(Level.SEVERE, null, ex);
+    }
+    return result;
   }
+
+  public Object updateStatusOff(int id) {
+    int result = 0;
+    String sql = "UPDATE mobil SET STATUS = 'OFF' WHERE IDMOBIL = " + id + "";
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      result = stmt.executeUpdate(sql);
+      conMan.disconnect();
+    } catch (SQLException ex) {
+      Logger.getLogger(MobilServiceImpl.class.getName())
+          .log(Level.SEVERE, null, ex);
+    }
+
+    return result;
+  }
+
 }

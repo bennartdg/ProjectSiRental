@@ -93,7 +93,7 @@ public class MemberServiceImpl implements MemberService {
 
         member.setIdMember(rs.getInt("IDMEMBER"));
         member.setNama(rs.getString("NAMA"));
-        member.setJenisKelamin((char) rs.getString("JENISKELAMIN").charAt(0));
+        member.setJenisKelamin(rs.getString("JENISKELAMIN").charAt(0));
         member.setAlamat(rs.getString("ALAMAT"));
         member.setTelepon(rs.getString("TELEPON"));
 

@@ -26,14 +26,15 @@ public class HargaServiceImpl implements HargaService {
   ResultSet rs;
 
   @Override
-  public Double hitungHarga(Mobil object) {
+  public void hitungHarga(Mobil object) {
     Mobil tmpMobil = new Mobil();
     double harga = 0;
     int kapasitas = 0;
+    int result = 0;
 
     String sql = "SELECT mbl.JENIS, mbl.TRANSMISI, mbl.TAHUNKELUAR "
-            + "FROM mobil mbl "
-            + "WHERE mbl.IDMOBIL=" + object.getIdMobil() + "";
+        + "FROM mobil mbl "
+        + "WHERE mbl.IDMOBIL = " + object.getIdMobil() + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -43,32 +44,31 @@ public class HargaServiceImpl implements HargaService {
       rs = stmt.executeQuery(sql);
 
       tmpMobil.setJenis(rs.getString("JENIS"));
-      tmpMobil.setTransmisi((char) rs.getObject("TRANSMISI"));
+      tmpMobil.setTransmisi(rs.getString("TRANSMISI").charAt(0));
       tmpMobil.setTahunKeluar(rs.getInt("TAHUNKELUAR"));
 
-      harga = total(tmpMobil);
       kapasitas = hitungKapasitas(tmpMobil);
+      harga = total(tmpMobil);
 
       String sqlUpdate = "UPDATE mobil set HARGA = " + harga + ", "
-              + "KAPASITAS = " + kapasitas + ""
-              + "WHERE IDMOBIL = " + object.getIdMobil() + "";
-      
+          + "KAPASITAS = " + kapasitas + " "
+          + "WHERE IDMOBIL = " + object.getIdMobil() + "";
+
       conMan = new ConnectionManager();
       conn = conMan.connect();
 
       try {
         stmt = conn.createStatement();
-        rs = stmt.executeQuery(sqlUpdate);
+        result = stmt.executeUpdate(sqlUpdate);
+        conMan.disconnect();
       } catch (SQLException ex) {
         Logger.getLogger(HargaServiceImpl.class.getName())
-                .log(Level.SEVERE, null, ex);
+            .log(Level.SEVERE, null, ex);
       }
     } catch (SQLException ex) {
       Logger.getLogger(HargaServiceImpl.class.getName())
-              .log(Level.SEVERE, null, ex);
+          .log(Level.SEVERE, null, ex);
     }
-
-    return null;
   }
 
   public int hitungKapasitas(Mobil tmpMobil) {
@@ -80,7 +80,6 @@ public class HargaServiceImpl implements HargaService {
     } else {
       return 4;
     }
-
   }
 
   public double hitungHargaTahunKeluar(Mobil tmpMobil) {
@@ -106,7 +105,7 @@ public class HargaServiceImpl implements HargaService {
   }
 
   public double total(Mobil tmpMobil) {
-    return hitungHargaTransmisi(tmpMobil) + hitungHargaTahunKeluar(tmpMobil);
+    return 100000 + hitungHargaTransmisi(tmpMobil) + hitungHargaTahunKeluar(tmpMobil);
   }
 
 }

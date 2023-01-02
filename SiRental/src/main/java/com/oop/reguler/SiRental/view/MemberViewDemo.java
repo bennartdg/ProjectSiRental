@@ -38,7 +38,7 @@ public class MemberViewDemo {
 
       switch (menu) {
         case 1:
-          MobilViewDemo.menuMemberMobil(member);
+          MobilViewMemberDemo.menuMemberMobil(member);
           break;
         case 2:
           ProfilViewDemo.memberProfil(member);

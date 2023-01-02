@@ -11,6 +11,6 @@ import com.oop.reguler.SiRental.pojo.Mobil;
  *
  * @author Ben
  */
-public interface HargaService extends HargaRepository<Mobil, Double>{
-  
+public interface HargaService extends HargaRepository<Mobil> {
+
 }

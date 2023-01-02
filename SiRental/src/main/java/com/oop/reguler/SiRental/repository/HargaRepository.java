@@ -8,6 +8,6 @@ package com.oop.reguler.SiRental.repository;
  *
  * @author Ben
  */
-public interface HargaRepository<T, D> {
-  Double hitungHarga(T object);
+public interface HargaRepository<T> {
+  void hitungHarga(T object);
 }

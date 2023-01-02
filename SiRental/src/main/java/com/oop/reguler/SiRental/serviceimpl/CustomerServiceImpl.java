@@ -34,13 +34,13 @@ public class CustomerServiceImpl implements CustomerService {
     Akun akun = null;
 
     String sql = "SELECT C.IDCUSTOMER, "
-            + "C.NAMA, C.JENISKELAMIN, C.ALAMAT, "
-            + "C.TELEPON, C.SALDO, "
-            + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
-            + "FROM CUSTOMER C, AKUN AK "
-            + "WHERE C.IDAKUN = AK.IDAKUN "
-            + "AND AK.USERNAME = '" + username + "' "
-            + "AND AK.PASSWORD = '" + password + "'";
+        + "C.NAMA, C.JENISKELAMIN, C.ALAMAT, "
+        + "C.TELEPON, C.SALDO, "
+        + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
+        + "FROM CUSTOMER C, AKUN AK "
+        + "WHERE C.IDAKUN = AK.IDAKUN "
+        + "AND AK.USERNAME = '" + username + "' "
+        + "AND AK.PASSWORD = '" + password + "'";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -101,7 +101,7 @@ public class CustomerServiceImpl implements CustomerService {
       }
     } catch (SQLException ex) {
       Logger.getLogger(CustomerServiceImpl.class.getName())
-              .log(Level.SEVERE, null, ex);
+          .log(Level.SEVERE, null, ex);
     }
 
     return listCustomer;
@@ -111,11 +111,11 @@ public class CustomerServiceImpl implements CustomerService {
   public Object create(Customer object) {
     int result = 0;
     String sql = "INSERT INTO customer (NAMA, JENISKELAMIN, ALAMAT, TELEPON) "
-            + "VALUES ('" + object.getIdCustomer() + "', "
-            + "'" + object.getNama() + "', "
-            + "'" + object.getJenisKelamin() + "', "
-            + "'" + object.getAlamat() + "', "
-            + "'" + object.getTelepon() + "')";
+        + "VALUES ('" + object.getIdCustomer() + "', "
+        + "'" + object.getNama() + "', "
+        + "'" + object.getJenisKelamin() + "', "
+        + "'" + object.getAlamat() + "', "
+        + "'" + object.getTelepon() + "')";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -126,7 +126,7 @@ public class CustomerServiceImpl implements CustomerService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(CustomerServiceImpl.class.getName())
-              .log(Level.SEVERE, null, ex);
+          .log(Level.SEVERE, null, ex);
     }
 
     return result;
@@ -136,10 +136,10 @@ public class CustomerServiceImpl implements CustomerService {
   public Object update(Customer object) {
     int result = 0;
     String sql = "UPDATE customer SET NAMA = '" + object.getNama() + "', "
-            + "JENISKELAMIN = '" + object.getJenisKelamin() + "', "
-            + "ALAMAT = '" + object.getAlamat() + "', "
-            + "TELEPON = '" + object.getTelepon() + "' "
-            + "WHERE IDCUSTOMER = " + object.getIdCustomer() + "";
+        + "JENISKELAMIN = '" + object.getJenisKelamin() + "', "
+        + "ALAMAT = '" + object.getAlamat() + "', "
+        + "TELEPON = '" + object.getTelepon() + "' "
+        + "WHERE IDCUSTOMER = " + object.getIdCustomer() + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -150,9 +150,28 @@ public class CustomerServiceImpl implements CustomerService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(CustomerServiceImpl.class.getName())
-              .log(Level.SEVERE, null, ex);
+          .log(Level.SEVERE, null, ex);
     }
 
+    return result;
+  }
+
+  public Object saldoPengurangan(Customer object) {
+    int result = 0;
+    String sql = "UPDATE customer SET SALDO = "
+        + object.getSaldo() + "";
+
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      result = stmt.executeUpdate(sql);
+      conMan.disconnect();
+    } catch (SQLException ex) {
+      Logger.getLogger(CustomerServiceImpl.class.getName())
+          .log(Level.SEVERE, null, ex);
+    }
     return result;
   }
 
@@ -179,7 +198,7 @@ public class CustomerServiceImpl implements CustomerService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(CustomerServiceImpl.class.getName())
-              .log(Level.SEVERE, null, ex);
+          .log(Level.SEVERE, null, ex);
     }
     return customer;
   }
@@ -198,7 +217,7 @@ public class CustomerServiceImpl implements CustomerService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(CustomerServiceImpl.class.getName())
-              .log(Level.SEVERE, null, ex);
+          .log(Level.SEVERE, null, ex);
     }
     return result;
   }
