@@ -201,11 +201,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="logo">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ASUS\OneDrive\Documents\ITENAS\OOP\cobaSIRental\src\main\java\sirental\Resources\sirental.jpeg"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="kenapaSiRental">
           <Properties>
@@ -266,14 +261,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnsewa2">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Daftar Sekarang"/>
           </Properties>
@@ -286,9 +275,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ASUS\OneDrive\Documents\ITENAS\OOP\cobaSIRental\src\main\java\sirental\Resources\instagram.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="SIRental"/>
           </Properties>
         </Component>
@@ -297,9 +283,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ASUS\OneDrive\Documents\ITENAS\OOP\cobaSIRental\src\main\java\sirental\Resources\facebook.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="SI_Rental"/>
           </Properties>
         </Component>
@@ -307,9 +290,6 @@
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ASUS\OneDrive\Documents\ITENAS\OOP\cobaSIRental\src\main\java\sirental\Resources\email.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="sirental205@gmail.com"/>
           </Properties>

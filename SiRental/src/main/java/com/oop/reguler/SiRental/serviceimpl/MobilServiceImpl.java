@@ -159,7 +159,8 @@ public class MobilServiceImpl implements MobilService {
         + "KAPASITAS = '" + object.getKapasitas() + "', "
         + "TRANSMISI = '" + object.getTransmisi() + "', "
         + "TAHUNKELUAR = " + object.getTahunKeluar() + ", "
-        + "HARGA = " + object.getHarga() + " "
+        + "HARGA = " + object.getHarga() + ", "
+        + "STATUS = '" + object.getStatus() + "' "
         + "WHERE IDMOBIL = " + object.getIdMobil() + "";
 
     conMan = new ConnectionManager();
@@ -223,7 +224,7 @@ public class MobilServiceImpl implements MobilService {
   @Override
   public Object delete(int id) {
     int result = 0;
-    String sql = "DELETE FROM mobil WHERE IDMOBIL= " + id + "";
+    String sql = "DELETE FROM mobil WHERE IDMOBIL = " + id + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();

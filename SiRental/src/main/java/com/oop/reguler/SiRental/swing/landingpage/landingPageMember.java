@@ -4,24 +4,27 @@
  */
 package com.oop.reguler.SiRental.swing.landingpage;
 
+import com.oop.reguler.SiRental.pojo.Member;
+import com.oop.reguler.SiRental.swing.login.LoginMember;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import com.oop.reguler.SiRental.swing.member.ProfileMember;
-import com.oop.reguler.SiRental.swing.member.Mobil;
+import com.oop.reguler.SiRental.swing.member.MobilMember;
 
 
 /**
  *
  * @author MEMi
  */
-public class landingPageMember extends javax.swing.JFrame {
-
+public class LandingPageMember extends javax.swing.JFrame {
+  public static Member member;
   /**
    * Creates new form test
    */
-  public landingPageMember() {
+  public LandingPageMember(Member member) {
     initComponents();
     this.setLocationRelativeTo(null);
+    this.member = member;
   }
   
   public void close(){
@@ -90,7 +93,6 @@ public class landingPageMember extends javax.swing.JFrame {
       }
     });
 
-    profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\profile-user.png")); // NOI18N
     profile.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         profileMouseClicked(evt);
@@ -136,8 +138,6 @@ public class landingPageMember extends javax.swing.JFrame {
 
     mainPage.setBackground(new java.awt.Color(255, 0, 70));
 
-    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\sirental.jpeg")); // NOI18N
-
     kenapaSiRental.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
     kenapaSiRental.setForeground(new java.awt.Color(255, 255, 255));
     kenapaSiRental.setText("KENAPA SI RENTAL ?");
@@ -158,9 +158,7 @@ public class landingPageMember extends javax.swing.JFrame {
     baris4.setForeground(new java.awt.Color(255, 255, 255));
     baris4.setText("dapatkan keuntungan bersama Si Rental");
 
-    btnTambahMobil.setBackground(new java.awt.Color(255, 255, 255));
     btnTambahMobil.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-    btnTambahMobil.setForeground(new java.awt.Color(0, 0, 0));
     btnTambahMobil.setText("Tambah Mobil");
     btnTambahMobil.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,15 +167,12 @@ public class landingPageMember extends javax.swing.JFrame {
     });
 
     instagram.setForeground(new java.awt.Color(255, 255, 255));
-    instagram.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\instagram.png")); // NOI18N
     instagram.setText("SIRental");
 
     facebook.setForeground(new java.awt.Color(255, 255, 255));
-    facebook.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\facebook.png")); // NOI18N
     facebook.setText("SI_Rental");
 
     email.setForeground(new java.awt.Color(255, 255, 255));
-    email.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\email.png")); // NOI18N
     email.setText("sirental205@gmail.com");
 
     javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
@@ -244,8 +239,8 @@ public class landingPageMember extends javax.swing.JFrame {
 
   private void btnMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMobilActionPerformed
     // TODO add your handling code here:
-    Mobil mobil = new Mobil();
-    mobil.setVisible(true);
+    MobilMember mobilMember = new MobilMember(member);
+    mobilMember.setVisible(true);
     close();
   }//GEN-LAST:event_btnMobilActionPerformed
 
@@ -258,8 +253,8 @@ public class landingPageMember extends javax.swing.JFrame {
 
   private void btnTambahMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahMobilActionPerformed
     // TODO add your handling code here:
-    Mobil mobil = new Mobil();
-    mobil.setVisible(true);
+    MobilMember mobilMember = new MobilMember(member);
+    mobilMember.setVisible(true);
     close();
   }//GEN-LAST:event_btnTambahMobilActionPerformed
 
@@ -280,14 +275,46 @@ public class landingPageMember extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(landingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(landingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(landingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(landingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
     //</editor-fold>
     //</editor-fold>
     //</editor-fold>
@@ -324,7 +351,7 @@ public class landingPageMember extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new landingPageMember().setVisible(true);
+        new LandingPageMember(member).setVisible(true);
       }
     });
   }

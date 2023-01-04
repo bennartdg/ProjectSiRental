@@ -11,12 +11,12 @@ import java.awt.event.WindowEvent;
  *
  * @author MEMi
  */
-public class landingPageCustomer extends javax.swing.JFrame {
+public class LandingPageCustomer extends javax.swing.JFrame {
 
   /**
    * Creates new form test
    */
-  public landingPageCustomer() {
+  public LandingPageCustomer() {
     initComponents();
     this.setLocationRelativeTo(null);
   }
@@ -88,8 +88,6 @@ public class landingPageCustomer extends javax.swing.JFrame {
       }
     });
 
-    profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\profile-user.png")); // NOI18N
-
     namaLogin.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
     namaLogin.setForeground(new java.awt.Color(255, 255, 255));
     namaLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -144,8 +142,6 @@ public class landingPageCustomer extends javax.swing.JFrame {
 
     mainPage.setBackground(new java.awt.Color(255, 0, 70));
 
-    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\sirental.jpeg")); // NOI18N
-
     kenapaSiRental.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
     kenapaSiRental.setForeground(new java.awt.Color(255, 255, 255));
     kenapaSiRental.setText("KENAPA SI RENTAL ?");
@@ -166,21 +162,16 @@ public class landingPageCustomer extends javax.swing.JFrame {
     baris4.setForeground(new java.awt.Color(255, 255, 255));
     baris4.setText("berkendara anda");
 
-    btnsewa2.setBackground(new java.awt.Color(255, 255, 255));
     btnsewa2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-    btnsewa2.setForeground(new java.awt.Color(0, 0, 0));
     btnsewa2.setText("Sewa Sekarang");
 
     instagram.setForeground(new java.awt.Color(255, 255, 255));
-    instagram.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\instagram.png")); // NOI18N
     instagram.setText("SIRental");
 
     facebook.setForeground(new java.awt.Color(255, 255, 255));
-    facebook.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\facebook.png")); // NOI18N
     facebook.setText("SI_Rental");
 
     email.setForeground(new java.awt.Color(255, 255, 255));
-    email.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\email.png")); // NOI18N
     email.setText("sirental205@gmail.com");
 
     javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
@@ -270,14 +261,46 @@ public class landingPageCustomer extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(landingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(landingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(landingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(landingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPageCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
     //</editor-fold>
     //</editor-fold>
     //</editor-fold>
@@ -314,7 +337,7 @@ public class landingPageCustomer extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new landingPageCustomer().setVisible(true);
+        new LandingPageCustomer().setVisible(true);
       }
     });
   }

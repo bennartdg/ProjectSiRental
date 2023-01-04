@@ -7,19 +7,19 @@ package com.oop.reguler.SiRental.swing.landingpage;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
-import com.oop.reguler.SiRental.swing.login.loginMain;
-import com.oop.reguler.SiRental.swing.register.registerMain;
+import com.oop.reguler.SiRental.swing.login.LoginMain;
+import com.oop.reguler.SiRental.swing.register.RegisterMain;
 
 /**
  *
  * @author MEMi
  */
-public class landingPage extends javax.swing.JFrame {
+public class LandingPage extends javax.swing.JFrame {
 
   /**
    * Creates new form test
    */
-  public landingPage() {
+  public LandingPage() {
     initComponents();
     this.setLocationRelativeTo(null);
   }
@@ -116,8 +116,6 @@ public class landingPage extends javax.swing.JFrame {
 
     mainPage.setBackground(new java.awt.Color(255, 0, 70));
 
-    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\sirental.jpeg")); // NOI18N
-
     kenapaSiRental.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
     kenapaSiRental.setForeground(new java.awt.Color(255, 255, 255));
     kenapaSiRental.setText("KENAPA SI RENTAL ?");
@@ -138,9 +136,7 @@ public class landingPage extends javax.swing.JFrame {
     baris4.setForeground(new java.awt.Color(255, 255, 255));
     baris4.setText("berkendara anda");
 
-    btnsewa2.setBackground(new java.awt.Color(255, 255, 255));
     btnsewa2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-    btnsewa2.setForeground(new java.awt.Color(0, 0, 0));
     btnsewa2.setText("Daftar Sekarang");
     btnsewa2.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,15 +145,12 @@ public class landingPage extends javax.swing.JFrame {
     });
 
     instagram.setForeground(new java.awt.Color(255, 255, 255));
-    instagram.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\instagram.png")); // NOI18N
     instagram.setText("SIRental");
 
     facebook.setForeground(new java.awt.Color(255, 255, 255));
-    facebook.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\facebook.png")); // NOI18N
     facebook.setText("SI_Rental");
 
     jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-    jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ASUS\\OneDrive\\Documents\\ITENAS\\OOP\\cobaSIRental\\src\\main\\java\\sirental\\Resources\\email.png")); // NOI18N
     jLabel2.setText("sirental205@gmail.com");
 
     javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
@@ -220,21 +213,21 @@ public class landingPage extends javax.swing.JFrame {
 
   private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     // TODO add your handling code here:
-    loginMain login = new loginMain();
+    LoginMain login = new LoginMain();
     login.setVisible(true);
     close();
   }//GEN-LAST:event_btnLoginActionPerformed
 
   private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
     // TODO add your handling code here:
-    registerMain regis = new registerMain();
+    RegisterMain regis = new RegisterMain();
     regis.setVisible(true);
     close();
   }//GEN-LAST:event_btnRegisterActionPerformed
 
   private void btnsewa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsewa2ActionPerformed
     // TODO add your handling code here:
-    registerMain regis = new registerMain();
+    RegisterMain regis = new RegisterMain();
     regis.setVisible(true);
     close();
   }//GEN-LAST:event_btnsewa2ActionPerformed
@@ -256,14 +249,18 @@ public class landingPage extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(landingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(landingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(landingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(landingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(LandingPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
+    //</editor-fold>
     //</editor-fold>
     //</editor-fold>
     //</editor-fold>
@@ -272,7 +269,7 @@ public class landingPage extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new landingPage().setVisible(true);
+        new LandingPage().setVisible(true);
       }
     });
   }

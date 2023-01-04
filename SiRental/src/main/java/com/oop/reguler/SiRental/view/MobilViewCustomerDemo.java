@@ -201,7 +201,6 @@ public class MobilViewCustomerDemo {
       try {
         transaksiService.create(transaksi);
 
-        // TODO : panggil saldoAdmin & saldoMember
         TransaksiServiceImpl transaksiServiceImpl = new TransaksiServiceImpl();
         transaksiServiceImpl.updateSaldoAdmin(transaksi);
         transaksiServiceImpl.updateSaldoMember(transaksi);
