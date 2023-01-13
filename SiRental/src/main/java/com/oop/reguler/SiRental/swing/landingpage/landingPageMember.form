@@ -48,8 +48,8 @@
                   <Component id="btnHome" min="-2" pref="75" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnMobil" min="-2" pref="75" max="-2" attributes="0"/>
-                  <EmptySpace pref="184" max="32767" attributes="0"/>
-                  <Component id="namaLogin" min="-2" pref="125" max="-2" attributes="0"/>
+                  <EmptySpace pref="193" max="32767" attributes="0"/>
+                  <Component id="lblNamaMember" min="-2" pref="125" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="profile" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -65,7 +65,7 @@
                       <Component id="btnHome" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnMobil" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="profile" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="namaLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblNamaMember" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="8" max="32767" attributes="0"/>
               </Group>
@@ -131,11 +131,16 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="profile">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\profile-user.png"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="profileMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="namaLogin">
+        <Component class="javax.swing.JLabel" name="lblNamaMember">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="16" style="0"/>
@@ -184,7 +189,7 @@
                           <Component id="email" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
                   <Component id="logo" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -211,7 +216,7 @@
                   <Component id="baris4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="btnTambahMobil" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="114" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="instagram" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="facebook" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -224,6 +229,11 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="logo">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\sirental.jpeg"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="kenapaSiRental">
           <Properties>
@@ -298,6 +308,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\instagram.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SIRental"/>
           </Properties>
         </Component>
@@ -306,6 +319,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\facebook.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SI_Rental"/>
           </Properties>
         </Component>
@@ -313,6 +329,9 @@
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\email.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="sirental205@gmail.com"/>
           </Properties>

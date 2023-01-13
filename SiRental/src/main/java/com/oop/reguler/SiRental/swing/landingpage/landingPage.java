@@ -6,7 +6,6 @@ package com.oop.reguler.SiRental.swing.landingpage;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
-import javax.swing.JLabel;
 import com.oop.reguler.SiRental.swing.login.LoginMain;
 import com.oop.reguler.SiRental.swing.register.RegisterMain;
 
@@ -50,7 +49,7 @@ public class LandingPage extends javax.swing.JFrame {
     baris2 = new javax.swing.JLabel();
     baris3 = new javax.swing.JLabel();
     baris4 = new javax.swing.JLabel();
-    btnsewa2 = new javax.swing.JButton();
+    btnDaftarSekarang = new javax.swing.JButton();
     instagram = new javax.swing.JLabel();
     facebook = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
@@ -76,7 +75,7 @@ public class LandingPage extends javax.swing.JFrame {
       }
     });
 
-    btnRegister.setBackground(new java.awt.Color(204, 0, 0));
+    btnRegister.setBackground(new java.awt.Color(255, 0, 70));
     btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
     btnRegister.setForeground(new java.awt.Color(255, 255, 255));
     btnRegister.setText("Register");
@@ -95,26 +94,30 @@ public class LandingPage extends javax.swing.JFrame {
       .addGroup(navbarLayout.createSequentialGroup()
         .addGap(50, 50, 50)
         .addComponent(SiRental)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 418, Short.MAX_VALUE)
-        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
+        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
-        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(50, 50, 50))
+        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(40, 40, 40))
     );
     navbarLayout.setVerticalGroup(
       navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(navbarLayout.createSequentialGroup()
         .addGap(10, 10, 10)
-        .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(SiRental)
-          .addComponent(btnLogin)
-          .addComponent(btnRegister))
-        .addContainerGap(9, Short.MAX_VALUE))
+        .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+          .addGroup(navbarLayout.createSequentialGroup()
+            .addComponent(SiRental)
+            .addGap(0, 8, Short.MAX_VALUE))
+          .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        .addContainerGap())
     );
 
     getContentPane().add(navbar, java.awt.BorderLayout.PAGE_START);
 
     mainPage.setBackground(new java.awt.Color(255, 0, 70));
+
+    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\sirental.jpeg")); // NOI18N
 
     kenapaSiRental.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
     kenapaSiRental.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,21 +139,24 @@ public class LandingPage extends javax.swing.JFrame {
     baris4.setForeground(new java.awt.Color(255, 255, 255));
     baris4.setText("berkendara anda");
 
-    btnsewa2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-    btnsewa2.setText("Daftar Sekarang");
-    btnsewa2.addActionListener(new java.awt.event.ActionListener() {
+    btnDaftarSekarang.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+    btnDaftarSekarang.setText("Daftar Sekarang");
+    btnDaftarSekarang.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnsewa2ActionPerformed(evt);
+        btnDaftarSekarangActionPerformed(evt);
       }
     });
 
     instagram.setForeground(new java.awt.Color(255, 255, 255));
+    instagram.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\instagram.png")); // NOI18N
     instagram.setText("SIRental");
 
     facebook.setForeground(new java.awt.Color(255, 255, 255));
+    facebook.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\facebook.png")); // NOI18N
     facebook.setText("SI_Rental");
 
     jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+    jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\email.png")); // NOI18N
     jLabel2.setText("sirental205@gmail.com");
 
     javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
@@ -167,14 +173,14 @@ public class LandingPage extends javax.swing.JFrame {
           .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
             .addComponent(garis, javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(kenapaSiRental, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addComponent(btnsewa2)
+          .addComponent(btnDaftarSekarang)
           .addGroup(mainPageLayout.createSequentialGroup()
             .addComponent(instagram)
             .addGap(18, 18, 18)
             .addComponent(facebook)
             .addGap(18, 18, 18)
             .addComponent(jLabel2)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
         .addComponent(logo))
     );
     mainPageLayout.setVerticalGroup(
@@ -196,9 +202,9 @@ public class LandingPage extends javax.swing.JFrame {
         .addComponent(baris3)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
         .addComponent(baris4)
-        .addGap(32, 32, 32)
-        .addComponent(btnsewa2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addGap(18, 18, 18)
+        .addComponent(btnDaftarSekarang, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
         .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(instagram)
           .addComponent(facebook)
@@ -225,12 +231,12 @@ public class LandingPage extends javax.swing.JFrame {
     close();
   }//GEN-LAST:event_btnRegisterActionPerformed
 
-  private void btnsewa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsewa2ActionPerformed
+  private void btnDaftarSekarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDaftarSekarangActionPerformed
     // TODO add your handling code here:
     RegisterMain regis = new RegisterMain();
     regis.setVisible(true);
     close();
-  }//GEN-LAST:event_btnsewa2ActionPerformed
+  }//GEN-LAST:event_btnDaftarSekarangActionPerformed
 
   /**
    * @param args the command line arguments
@@ -280,9 +286,9 @@ public class LandingPage extends javax.swing.JFrame {
   private javax.swing.JLabel baris2;
   private javax.swing.JLabel baris3;
   private javax.swing.JLabel baris4;
+  private javax.swing.JButton btnDaftarSekarang;
   private javax.swing.JButton btnLogin;
   private javax.swing.JButton btnRegister;
-  private javax.swing.JButton btnsewa2;
   private javax.swing.JLabel facebook;
   private javax.swing.JSeparator garis;
   private javax.swing.JLabel instagram;

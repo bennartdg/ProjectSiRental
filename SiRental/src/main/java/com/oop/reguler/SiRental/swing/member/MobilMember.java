@@ -11,11 +11,7 @@ import com.oop.reguler.SiRental.serviceimpl.MobilServiceImpl;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import com.oop.reguler.SiRental.swing.landingpage.LandingPageMember;
-import com.oop.reguler.SiRental.swing.login.LoginMember;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,6 +31,7 @@ public class MobilMember extends javax.swing.JFrame {
     this.setLocationRelativeTo(null);
     this.member = member;
     loadData(member);
+    lblNamaMember.setText(member.getNama());
   }
 
   public void close() {
@@ -80,6 +77,9 @@ public class MobilMember extends javax.swing.JFrame {
             objectMobil, new String[]{
               "ID", "No Plat", "Merk", "Warna", "Jenis", "Kapasitas", "Transmisi", "Tahun", "Harga", "Status"
             }));
+    
+    double saldo = member.getSaldo();
+    txtSaldoMember.setText(saldo + "");
   }
 
   /**
@@ -96,7 +96,7 @@ public class MobilMember extends javax.swing.JFrame {
     btnHome = new javax.swing.JButton();
     btnMobil = new javax.swing.JButton();
     profile = new javax.swing.JLabel();
-    namaLogin = new javax.swing.JLabel();
+    lblNamaMember = new javax.swing.JLabel();
     mainPage = new javax.swing.JPanel();
     logo = new javax.swing.JLabel();
     mobilAnda = new javax.swing.JLabel();
@@ -130,6 +130,9 @@ public class MobilMember extends javax.swing.JFrame {
     idMobil = new javax.swing.JLabel();
     txtIdMobil = new javax.swing.JTextField();
     btnRefresh = new javax.swing.JButton();
+    txtSaldoMember = new javax.swing.JTextField();
+    txtRp = new javax.swing.JTextField();
+    Nama2 = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -164,16 +167,17 @@ public class MobilMember extends javax.swing.JFrame {
       }
     });
 
+    profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\profile-user.png")); // NOI18N
     profile.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         profileMouseClicked(evt);
       }
     });
 
-    namaLogin.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-    namaLogin.setForeground(new java.awt.Color(255, 255, 255));
-    namaLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    namaLogin.setText("Member");
+    lblNamaMember.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+    lblNamaMember.setForeground(new java.awt.Color(255, 255, 255));
+    lblNamaMember.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    lblNamaMember.setText("Member");
 
     javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
     navbar.setLayout(navbarLayout);
@@ -187,7 +191,7 @@ public class MobilMember extends javax.swing.JFrame {
         .addGap(18, 18, 18)
         .addComponent(btnMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
-        .addComponent(namaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(lblNamaMember, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(profile)
         .addGap(50, 50, 50))
@@ -201,8 +205,8 @@ public class MobilMember extends javax.swing.JFrame {
           .addComponent(btnHome)
           .addComponent(btnMobil)
           .addComponent(profile)
-          .addComponent(namaLogin))
-        .addContainerGap(13, Short.MAX_VALUE))
+          .addComponent(lblNamaMember))
+        .addContainerGap(8, Short.MAX_VALUE))
     );
 
     getContentPane().add(navbar, java.awt.BorderLayout.PAGE_START);
@@ -472,12 +476,25 @@ public class MobilMember extends javax.swing.JFrame {
       }
     });
 
+    txtSaldoMember.setEditable(false);
+    txtSaldoMember.setBackground(new java.awt.Color(255, 255, 255));
+    txtSaldoMember.setForeground(new java.awt.Color(33, 33, 33));
+
+    txtRp.setEditable(false);
+    txtRp.setBackground(new java.awt.Color(255, 255, 255));
+    txtRp.setForeground(new java.awt.Color(33, 33, 33));
+    txtRp.setText("Rp.");
+
+    Nama2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+    Nama2.setForeground(new java.awt.Color(255, 255, 255));
+    Nama2.setText("Saldo Anda");
+
     javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
     mainPage.setLayout(mainPageLayout);
     mainPageLayout.setHorizontalGroup(
       mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(mainPageLayout.createSequentialGroup()
-        .addContainerGap(20, Short.MAX_VALUE)
+        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
           .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addGroup(mainPageLayout.createSequentialGroup()
@@ -487,51 +504,61 @@ public class MobilMember extends javax.swing.JFrame {
             .addGap(18, 18, 18)
             .addComponent(btnRefresh)
             .addGap(104, 104, 104)))
-        .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(40, 40, 40)
+        .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+          .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPageLayout.createSequentialGroup()
+              .addGap(174, 174, 174)
+              .addComponent(mobilAnda)
+              .addGap(18, 18, 18))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
+              .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGap(18, 18, 18)
+              .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGap(18, 18, 18)
+              .addComponent(btnTambah))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
           .addGroup(mainPageLayout.createSequentialGroup()
-            .addGap(194, 194, 194)
-            .addComponent(mobilAnda)
+            .addComponent(Nama2)
             .addGap(18, 18, 18)
-            .addComponent(logo))
-          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
-            .addGap(20, 20, 20)
-            .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnTambah))
-              .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        .addGap(21, 21, 21))
+            .addComponent(txtRp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, 0)
+            .addComponent(txtSaldoMember, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(logo)
+        .addGap(41, 41, 41))
     );
     mainPageLayout.setVerticalGroup(
       mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
-        .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addGroup(mainPageLayout.createSequentialGroup()
-            .addGap(16, 16, 16)
-            .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(logo)
-              .addGroup(mainPageLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(mobilAnda)))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(0, 0, Short.MAX_VALUE))
-          .addGroup(mainPageLayout.createSequentialGroup()
-            .addContainerGap(9, Short.MAX_VALUE)
-            .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-              .addComponent(idMobil)
-              .addComponent(txtIdMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addContainerGap(9, Short.MAX_VALUE)
+        .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createSequentialGroup()
+            .addComponent(logo)
+            .addGap(362, 362, 362))
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mainPageLayout.createSequentialGroup()
+              .addComponent(mobilAnda)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+              .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addGap(18, 18, 18)
+              .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addGap(18, 18, 18)
+              .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(txtSaldoMember, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                  .addComponent(txtRp, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(Nama2))))
+            .addGroup(mainPageLayout.createSequentialGroup()
+              .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(idMobil)
+                .addComponent(txtIdMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+              .addComponent(form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         .addGap(14, 14, 14))
     );
 
@@ -554,17 +581,20 @@ public class MobilMember extends javax.swing.JFrame {
 
   private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
     int id;
+    if (txtIdMobil.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Pilih Data yang akan dihapus!");
+    } else {
+      MobilService mobilService = new MobilServiceImpl();
+      int dialogButton = JOptionPane.YES_NO_OPTION;
 
-    MobilService mobilService = new MobilServiceImpl();
-    int dialogButton = JOptionPane.YES_NO_OPTION;
+      id = Integer.parseInt(txtIdMobil.getText());
 
-    id = Integer.parseInt(txtIdMobil.getText());
-
-    int dialogResult = JOptionPane.showConfirmDialog(null, "Anda yakin untuk menghapus?", "Warning", dialogButton);
-    if (dialogResult == JOptionPane.YES_OPTION){
-      mobilService.delete(id);
-      loadData(member);
-      emptyField();
+      int dialogResult = JOptionPane.showConfirmDialog(null, "Anda yakin untuk menghapus?", "Warning", dialogButton);
+      if (dialogResult == JOptionPane.YES_OPTION) {
+        mobilService.delete(id);
+        loadData(member);
+        emptyField();
+      }
     }
   }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -576,37 +606,50 @@ public class MobilMember extends javax.swing.JFrame {
 
     MobilService mobilService = new MobilServiceImpl();
 
-    id = Integer.parseInt(txtIdMobil.getText());
-    noPlat = txtNoPlat.getText();
-    merk = txtMerk.getText();
-    warna = txtWarna.getText();
-    jenis = cbJenis.getSelectedItem().toString();
-    kapasitas = Integer.parseInt(cbKapasitas.getSelectedItem().toString());
     transmisi = transmisiGlobal;
-    tahun = Integer.parseInt(txtTahun.getText());
-    harga = Double.parseDouble(txtHarga.getText());
     status = statusGlobal;
 
-    Mobil mobil = new Mobil();
-    mobil.setIdMobil(id);
-    mobil.setPlatNo(noPlat);
-    mobil.setMerk(merk);
-    mobil.setWarna(warna);
-    mobil.setJenis(jenis);
-    mobil.setKapasitas(kapasitas);
-    mobil.setTransmisi(transmisi);
-    mobil.setTahunKeluar(tahun);
-    mobil.setHarga(harga);
-    mobil.setStatus(status);
+    if (txtIdMobil.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Pilih Data yang akan Update!");
+    } else {
+      if (txtNoPlat.getText().equals("") || txtMerk.getText().equals("")
+              || txtWarna.getText().equals("")
+              || transmisi != 'A' && transmisi != 'M'
+              || status.equals("ON") && status.equals("OFF")
+              || txtTahun.getText().equals("")
+              || txtHarga.getText().equals("")) {
+        JOptionPane.showMessageDialog(null, "Isi semua Data sebelum Update!");
+      } else {
+        id = Integer.parseInt(txtIdMobil.getText());
+        noPlat = txtNoPlat.getText();
+        merk = txtMerk.getText();
+        warna = txtWarna.getText();
+        jenis = cbJenis.getSelectedItem().toString();
+        kapasitas = Integer.parseInt(cbKapasitas.getSelectedItem().toString());
+        tahun = Integer.parseInt(txtTahun.getText());
+        harga = Double.parseDouble(txtHarga.getText());
 
-    mobilService.update(mobil);
-    JOptionPane.showMessageDialog(null, "Data Mobil Berhasil diUpdate!");
-    loadData(member);
-    emptyField();
+        Mobil mobil = new Mobil();
+        mobil.setIdMobil(id);
+        mobil.setPlatNo(noPlat);
+        mobil.setMerk(merk);
+        mobil.setWarna(warna);
+        mobil.setJenis(jenis);
+        mobil.setKapasitas(kapasitas);
+        mobil.setTransmisi(transmisi);
+        mobil.setTahunKeluar(tahun);
+        mobil.setHarga(harga);
+        mobil.setStatus(status);
+
+        mobilService.update(mobil);
+        JOptionPane.showMessageDialog(null, "Data Mobil Berhasil diUpdate!");
+        loadData(member);
+        emptyField();
+      }
+    }
   }//GEN-LAST:event_btnUpdateActionPerformed
 
   private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-    // TODO add your handling code here:
     String noPlat, merk, warna, jenis, status;
     char transmisi;
     int idMember, kapasitas, tahun;
@@ -614,36 +657,45 @@ public class MobilMember extends javax.swing.JFrame {
 
     MobilService mobilService = new MobilServiceImpl();
 
-    idMember = member.getIdMember();
-    noPlat = txtNoPlat.getText();
-    merk = txtMerk.getText();
-    warna = txtWarna.getText();
-    jenis = cbJenis.getSelectedItem().toString();
-    kapasitas = Integer.parseInt(cbKapasitas.getSelectedItem().toString());
     transmisi = transmisiGlobal;
-    tahun = Integer.parseInt(txtTahun.getText());
-    harga = Double.parseDouble(txtHarga.getText());
+    if (txtNoPlat.getText().equals("") || txtMerk.getText().equals("")
+            || txtWarna.getText().equals("")
+            || transmisi != 'A' && transmisi != 'M'
+            || txtTahun.getText().equals("")
+            || txtHarga.getText().equals("")) {
+      JOptionPane.showMessageDialog(null, "Isi semua Data sebelum menambahkan!");
+    } else {
+      idMember = member.getIdMember();
+      noPlat = txtNoPlat.getText();
+      merk = txtMerk.getText();
+      warna = txtWarna.getText();
+      jenis = cbJenis.getSelectedItem().toString();
+      kapasitas = Integer.parseInt(cbKapasitas.getSelectedItem().toString());
+      //Pengen masukin exception salah input integer/double
+      tahun = Integer.parseInt(txtTahun.getText());
+      harga = Double.parseDouble(txtHarga.getText());
 
-    Mobil mobil = new Mobil();
-    mobil.setMember(member);
-    mobil.setPlatNo(noPlat);
-    mobil.setMerk(merk);
-    mobil.setWarna(warna);
-    mobil.setJenis(jenis);
-    mobil.setKapasitas(kapasitas);
-    mobil.setTransmisi(transmisi);
-    mobil.setTahunKeluar(tahun);
-    mobil.setHarga(harga);
+      Mobil mobil = new Mobil();
+      mobil.setMember(member);
+      mobil.setPlatNo(noPlat);
+      mobil.setMerk(merk);
+      mobil.setWarna(warna);
+      mobil.setJenis(jenis);
+      mobil.setKapasitas(kapasitas);
+      mobil.setTransmisi(transmisi);
+      mobil.setTahunKeluar(tahun);
+      mobil.setHarga(harga);
 
-    mobilService.create(mobil);
-    JOptionPane.showMessageDialog(null, "Data Mobil Berhasil diTambahkan!");
-    loadData(member);
-    emptyField();
+      mobilService.create(mobil);
+      JOptionPane.showMessageDialog(null, "Data Mobil Berhasil diTambahkan!");
+      loadData(member);
+      emptyField();
+    }
   }//GEN-LAST:event_btnTambahActionPerformed
 
   private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
     // TODO add your handling code here:
-    ProfileMember profileMember = new ProfileMember();
+    ProfileMember profileMember = new ProfileMember(member);
     profileMember.setVisible(true);
     close();
 
@@ -768,6 +820,7 @@ public class MobilMember extends javax.swing.JFrame {
   private javax.swing.JLabel Jenis;
   private javax.swing.JLabel Kapasitas;
   private javax.swing.JLabel Merk;
+  private javax.swing.JLabel Nama2;
   private javax.swing.JLabel SiRental;
   private javax.swing.JLabel Status;
   private javax.swing.JLabel Tahun;
@@ -784,10 +837,10 @@ public class MobilMember extends javax.swing.JFrame {
   private javax.swing.JPanel form;
   private javax.swing.JLabel idMobil;
   private javax.swing.JScrollPane jScrollPane1;
+  private javax.swing.JLabel lblNamaMember;
   private javax.swing.JLabel logo;
   private javax.swing.JPanel mainPage;
   private javax.swing.JLabel mobilAnda;
-  private javax.swing.JLabel namaLogin;
   private javax.swing.JPanel navbar;
   private javax.swing.JLabel noPlat;
   private javax.swing.JLabel profile;
@@ -803,6 +856,8 @@ public class MobilMember extends javax.swing.JFrame {
   private javax.swing.JTextField txtMerk;
   private javax.swing.JTextField txtNoPlat;
   private javax.swing.JTextField txtOrang;
+  private javax.swing.JTextField txtRp;
+  private javax.swing.JTextField txtSaldoMember;
   private javax.swing.JTextField txtTahun;
   private javax.swing.JTextField txtWarna;
   // End of variables declaration//GEN-END:variables

@@ -47,6 +47,11 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="logo">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\car icon.png"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="-100" y="0" width="520" height="440"/>
@@ -186,6 +191,11 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="btnBack">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\back-button.png"/>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBackMouseClicked"/>
           </Events>

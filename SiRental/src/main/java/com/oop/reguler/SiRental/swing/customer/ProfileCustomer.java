@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.oop.reguler.SiRental.swing.member;
+package com.oop.reguler.SiRental.swing.customer;
 
-import com.oop.reguler.SiRental.pojo.Member;
+import com.oop.reguler.SiRental.pojo.Customer;
 import com.oop.reguler.SiRental.swing.landingpage.LandingPage;
-import com.oop.reguler.SiRental.swing.landingpage.LandingPageMember;
+import com.oop.reguler.SiRental.swing.landingpage.LandingPageCustomer;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -15,34 +15,34 @@ import javax.swing.JOptionPane;
  *
  * @author MEMi
  */
-public class ProfileMember extends javax.swing.JFrame {
+public class ProfileCustomer extends javax.swing.JFrame {
 
   /**
    * Creates new form ProfileMember
    */
-  private static Member member;
-
-  public ProfileMember(Member member) {
+  private static Customer customer;
+  
+  public ProfileCustomer(Customer customer) {
     initComponents();
     this.setLocationRelativeTo(null);
-    this.member = member;
+    this.customer = customer;
+    lblNamaCustomer.setText(customer.getNama());
     loadData();
-    lblNamaMember.setText(member.getNama());
   }
 
   private void loadData() {
-    txtUsername.setText(member.getAkun().getUsername());
-    txtNama.setText(member.getNama());
+    txtUsername.setText(customer.getAkun().getUsername());
+    txtNama.setText(customer.getNama());
 
-    char jenisKelamin = member.getJenisKelamin();
+    char jenisKelamin = customer.getJenisKelamin();
     if (jenisKelamin == 'L') {
       txtJenisKelamin.setText("Laki-laki");
     } else {
       txtJenisKelamin.setText("Perempuan");
     }
-    txtTelepon.setText(member.getTelepon());
-    txtAlamat.setText(member.getAlamat());
-    txtSaldo.setText(member.getSaldo() + "");
+    txtTelepon.setText(customer.getTelepon());
+    txtAlamat.setText(customer.getAlamat());
+    txtSaldo.setText(customer.getSaldo() + "");
   }
 
   public void close() {
@@ -60,9 +60,10 @@ public class ProfileMember extends javax.swing.JFrame {
     navbar = new javax.swing.JPanel();
     SiRental = new javax.swing.JLabel();
     btnHome = new javax.swing.JButton();
-    btnMobil = new javax.swing.JButton();
     profile = new javax.swing.JLabel();
-    lblNamaMember = new javax.swing.JLabel();
+    lblNamaCustomer = new javax.swing.JLabel();
+    btnCariMobil = new javax.swing.JButton();
+    btnDisewa = new javax.swing.JButton();
     profilPanel = new javax.swing.JPanel();
     txtUsername = new javax.swing.JTextField();
     jLabel5 = new javax.swing.JLabel();
@@ -102,24 +103,36 @@ public class ProfileMember extends javax.swing.JFrame {
       }
     });
 
-    btnMobil.setBackground(new java.awt.Color(33, 33, 33));
-    btnMobil.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-    btnMobil.setForeground(new java.awt.Color(255, 255, 255));
-    btnMobil.setText("Mobil");
-    btnMobil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-    btnMobil.setBorderPainted(false);
-    btnMobil.addActionListener(new java.awt.event.ActionListener() {
+    profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\profile-user.png")); // NOI18N
+
+    lblNamaCustomer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+    lblNamaCustomer.setForeground(new java.awt.Color(255, 255, 255));
+    lblNamaCustomer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    lblNamaCustomer.setText("Customer");
+
+    btnCariMobil.setBackground(new java.awt.Color(33, 33, 33));
+    btnCariMobil.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+    btnCariMobil.setForeground(new java.awt.Color(255, 255, 255));
+    btnCariMobil.setText("Cari Mobil");
+    btnCariMobil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    btnCariMobil.setBorderPainted(false);
+    btnCariMobil.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnMobilActionPerformed(evt);
+        btnCariMobilActionPerformed(evt);
       }
     });
 
-    profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\profile-user.png")); // NOI18N
-
-    lblNamaMember.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-    lblNamaMember.setForeground(new java.awt.Color(255, 255, 255));
-    lblNamaMember.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    lblNamaMember.setText("Member");
+    btnDisewa.setBackground(new java.awt.Color(33, 33, 33));
+    btnDisewa.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+    btnDisewa.setForeground(new java.awt.Color(255, 255, 255));
+    btnDisewa.setText("Mobil Disewa");
+    btnDisewa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+    btnDisewa.setBorderPainted(false);
+    btnDisewa.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnDisewaActionPerformed(evt);
+      }
+    });
 
     javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
     navbar.setLayout(navbarLayout);
@@ -130,10 +143,12 @@ public class ProfileMember extends javax.swing.JFrame {
         .addComponent(SiRental)
         .addGap(65, 65, 65)
         .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addGap(18, 18, 18)
-        .addComponent(btnMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        .addComponent(lblNamaMember, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGap(28, 28, 28)
+        .addComponent(btnCariMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+        .addComponent(btnDisewa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        .addComponent(lblNamaCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(profile)
         .addGap(50, 50, 50))
@@ -142,12 +157,15 @@ public class ProfileMember extends javax.swing.JFrame {
       navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGroup(navbarLayout.createSequentialGroup()
         .addGap(10, 10, 10)
-        .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-          .addComponent(SiRental)
-          .addComponent(btnHome)
-          .addComponent(btnMobil)
-          .addComponent(profile)
-          .addComponent(lblNamaMember))
+        .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+          .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(btnCariMobil)
+            .addComponent(btnDisewa))
+          .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            .addComponent(SiRental)
+            .addComponent(btnHome)
+            .addComponent(profile)
+            .addComponent(lblNamaCustomer)))
         .addContainerGap(8, Short.MAX_VALUE))
     );
 
@@ -351,16 +369,10 @@ public class ProfileMember extends javax.swing.JFrame {
   }// </editor-fold>//GEN-END:initComponents
 
   private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-    LandingPageMember lpMember = new LandingPageMember(member);
-    lpMember.setVisible(true);
+    LandingPageCustomer landingPageCustomer = new LandingPageCustomer(customer);
+    landingPageCustomer.setVisible(true);
     close();
   }//GEN-LAST:event_btnHomeActionPerformed
-
-  private void btnMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMobilActionPerformed
-    MobilMember mobilMember = new MobilMember(member);
-    mobilMember.setVisible(true);
-    close();
-  }//GEN-LAST:event_btnMobilActionPerformed
 
   private void txtSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSaldoActionPerformed
     // TODO add your handling code here:
@@ -392,11 +404,23 @@ public class ProfileMember extends javax.swing.JFrame {
     int dialogResult = JOptionPane.showConfirmDialog(null, "yakin mau Logout nih?", "Warning", dialogButton);
     if (dialogResult == JOptionPane.YES_OPTION) {
       LandingPage landingPage = new LandingPage();
-      member.setLoginStatus(false);
+      customer.setLoginStatus(false);
       landingPage.setVisible(true);
       close();
     }
   }//GEN-LAST:event_btnLogoutActionPerformed
+
+  private void btnCariMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariMobilActionPerformed
+    CustomerCariMobil customerCariMobil = new CustomerCariMobil(customer);
+    customerCariMobil.setVisible(true);
+    close();
+  }//GEN-LAST:event_btnCariMobilActionPerformed
+
+  private void btnDisewaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisewaActionPerformed
+    CustomerMobilDisewa customerMobilDisewa = new CustomerMobilDisewa(customer);
+    customerMobilDisewa.setVisible(true);
+    close();
+  }//GEN-LAST:event_btnDisewaActionPerformed
 
   /**
    * @param args the command line arguments
@@ -415,30 +439,33 @@ public class ProfileMember extends javax.swing.JFrame {
         }
       }
     } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(ProfileMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ProfileCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(ProfileMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ProfileCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(ProfileMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ProfileCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(ProfileMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+      java.util.logging.Logger.getLogger(ProfileCustomer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+    //</editor-fold>
     //</editor-fold>
     //</editor-fold>
 
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new ProfileMember(member).setVisible(true);
+        new ProfileCustomer(customer).setVisible(true);
       }
     });
   }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel SiRental;
+  private javax.swing.JButton btnCariMobil;
+  private javax.swing.JButton btnDisewa;
   private javax.swing.JButton btnHome;
   private javax.swing.JButton btnLogout;
-  private javax.swing.JButton btnMobil;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel10;
   private javax.swing.JLabel jLabel11;
@@ -447,7 +474,7 @@ public class ProfileMember extends javax.swing.JFrame {
   private javax.swing.JLabel jLabel8;
   private javax.swing.JLabel jLabel9;
   private javax.swing.JPanel jPanel1;
-  private javax.swing.JLabel lblNamaMember;
+  private javax.swing.JLabel lblNamaCustomer;
   private javax.swing.JPanel navbar;
   private javax.swing.JPanel profilPanel;
   private javax.swing.JLabel profile;

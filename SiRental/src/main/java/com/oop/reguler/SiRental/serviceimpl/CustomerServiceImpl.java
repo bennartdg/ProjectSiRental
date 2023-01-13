@@ -39,9 +39,9 @@ public class CustomerServiceImpl implements CustomerService {
     String sql = "SELECT C.IDCUSTOMER, "
         + "C.NAMA, C.JENISKELAMIN, C.ALAMAT, "
         + "C.TELEPON, C.SALDO, "
-        + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
+        + "AK.USERNAME, AK.PASSWORD, AK.LEVEL "
         + "FROM CUSTOMER C, AKUN AK "
-        + "WHERE C.IDAKUN = AK.IDAKUN "
+        + "WHERE C.USERNAME = AK.USERNAME "
         + "AND AK.USERNAME = '" + username + "' "
         + "AND AK.PASSWORD = '" + password + "'";
 
@@ -62,9 +62,8 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setSaldo(rs.getDouble("SALDO"));
 
         akun = new Akun();
-        akun.setId(rs.getInt("IDAKUN"));
         akun.setUsername(rs.getString("USERNAME"));
-        akun.setUsername(rs.getString("PASSWORD"));
+        akun.setPassword(rs.getString("PASSWORD"));
         akun.setLevel(rs.getString("LEVEL"));
 
         customer.setAkun(akun);
@@ -113,12 +112,13 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public Object create(Customer object) {
     int result = 0;
-    String sql = "INSERT INTO customer (NAMA, JENISKELAMIN, ALAMAT, TELEPON) "
-        + "VALUES ('" + object.getIdCustomer() + "', "
+    String sql = "INSERT INTO customer (NAMA, JENISKELAMIN, ALAMAT, TELEPON, USERNAME) "
+        + "VALUES ("
         + "'" + object.getNama() + "', "
         + "'" + object.getJenisKelamin() + "', "
         + "'" + object.getAlamat() + "', "
-        + "'" + object.getTelepon() + "')";
+        + "'" + object.getTelepon() + "', "
+        + "'" + object.getAkun().getUsername() + "')";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -132,6 +132,28 @@ public class CustomerServiceImpl implements CustomerService {
           .log(Level.SEVERE, null, ex);
     }
 
+    return result;
+  }
+  
+    public Object create(Akun object) {
+    int result = 0;
+    String sql = "INSERT INTO akun (USERNAME, PASSWORD, LEVEL) "
+            + "VALUES ('" + object.getUsername() + "', "
+            + "'" + object.getPassword() + "', "
+            + "'customer')";
+    
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      stmt.executeUpdate(sql);
+      conMan.disconnect();
+    } catch (SQLException ex) {
+      Logger.getLogger(MemberServiceImpl.class.getName())
+              .log(Level.SEVERE, null, ex);
+    }
+    
     return result;
   }
 
@@ -162,7 +184,7 @@ public class CustomerServiceImpl implements CustomerService {
   public Object saldoPengurangan(Customer object) {
     int result = 0;
     String sql = "UPDATE customer SET SALDO = "
-        + object.getSaldo() + "";
+        + object.getSaldo() + "WHERE IDCUSTOMER = " + object.getIdCustomer() + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -224,7 +246,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
     return result;
   }
-
+  
   public Customer getAllAtribut(Customer customer) {
 
     String sql = "SELECT IDTRANSAKSI, IDMEMBER, IDMOBIL "

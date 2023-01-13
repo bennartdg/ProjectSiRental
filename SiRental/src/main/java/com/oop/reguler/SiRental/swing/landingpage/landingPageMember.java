@@ -5,7 +5,6 @@
 package com.oop.reguler.SiRental.swing.landingpage;
 
 import com.oop.reguler.SiRental.pojo.Member;
-import com.oop.reguler.SiRental.swing.login.LoginMember;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import com.oop.reguler.SiRental.swing.member.ProfileMember;
@@ -25,6 +24,7 @@ public class LandingPageMember extends javax.swing.JFrame {
     initComponents();
     this.setLocationRelativeTo(null);
     this.member = member;
+    lblNamaMember.setText(member.getNama());
   }
   
   public void close(){
@@ -46,7 +46,7 @@ public class LandingPageMember extends javax.swing.JFrame {
     btnHome = new javax.swing.JButton();
     btnMobil = new javax.swing.JButton();
     profile = new javax.swing.JLabel();
-    namaLogin = new javax.swing.JLabel();
+    lblNamaMember = new javax.swing.JLabel();
     mainPage = new javax.swing.JPanel();
     logo = new javax.swing.JLabel();
     kenapaSiRental = new javax.swing.JLabel();
@@ -93,16 +93,17 @@ public class LandingPageMember extends javax.swing.JFrame {
       }
     });
 
+    profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\profile-user.png")); // NOI18N
     profile.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         profileMouseClicked(evt);
       }
     });
 
-    namaLogin.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-    namaLogin.setForeground(new java.awt.Color(255, 255, 255));
-    namaLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    namaLogin.setText("Member");
+    lblNamaMember.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+    lblNamaMember.setForeground(new java.awt.Color(255, 255, 255));
+    lblNamaMember.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    lblNamaMember.setText("Member");
 
     javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
     navbar.setLayout(navbarLayout);
@@ -115,8 +116,8 @@ public class LandingPageMember extends javax.swing.JFrame {
         .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addGap(18, 18, 18)
         .addComponent(btnMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-        .addComponent(namaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+        .addComponent(lblNamaMember, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
         .addComponent(profile)
         .addGap(50, 50, 50))
@@ -130,13 +131,15 @@ public class LandingPageMember extends javax.swing.JFrame {
           .addComponent(btnHome)
           .addComponent(btnMobil)
           .addComponent(profile)
-          .addComponent(namaLogin))
+          .addComponent(lblNamaMember))
         .addContainerGap(8, Short.MAX_VALUE))
     );
 
     getContentPane().add(navbar, java.awt.BorderLayout.PAGE_START);
 
     mainPage.setBackground(new java.awt.Color(255, 0, 70));
+
+    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\sirental.jpeg")); // NOI18N
 
     kenapaSiRental.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
     kenapaSiRental.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,12 +170,15 @@ public class LandingPageMember extends javax.swing.JFrame {
     });
 
     instagram.setForeground(new java.awt.Color(255, 255, 255));
+    instagram.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\instagram.png")); // NOI18N
     instagram.setText("SIRental");
 
     facebook.setForeground(new java.awt.Color(255, 255, 255));
+    facebook.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\facebook.png")); // NOI18N
     facebook.setText("SI_Rental");
 
     email.setForeground(new java.awt.Color(255, 255, 255));
+    email.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\email.png")); // NOI18N
     email.setText("sirental205@gmail.com");
 
     javax.swing.GroupLayout mainPageLayout = new javax.swing.GroupLayout(mainPage);
@@ -196,7 +202,7 @@ public class LandingPageMember extends javax.swing.JFrame {
             .addComponent(facebook)
             .addGap(18, 18, 18)
             .addComponent(email)))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
         .addComponent(logo))
     );
     mainPageLayout.setVerticalGroup(
@@ -220,7 +226,7 @@ public class LandingPageMember extends javax.swing.JFrame {
         .addComponent(baris4)
         .addGap(32, 32, 32)
         .addComponent(btnTambahMobil, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
         .addGroup(mainPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(instagram)
           .addComponent(facebook)
@@ -238,21 +244,18 @@ public class LandingPageMember extends javax.swing.JFrame {
   }//GEN-LAST:event_btnHomeActionPerformed
 
   private void btnMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMobilActionPerformed
-    // TODO add your handling code here:
     MobilMember mobilMember = new MobilMember(member);
     mobilMember.setVisible(true);
     close();
   }//GEN-LAST:event_btnMobilActionPerformed
 
   private void profileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profileMouseClicked
-    // TODO add your handling code here:
-    ProfileMember profileMember = new ProfileMember();
+    ProfileMember profileMember = new ProfileMember(member);
     profileMember.setVisible(true);
     close();
   }//GEN-LAST:event_profileMouseClicked
 
   private void btnTambahMobilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahMobilActionPerformed
-    // TODO add your handling code here:
     MobilMember mobilMember = new MobilMember(member);
     mobilMember.setVisible(true);
     close();
@@ -370,9 +373,9 @@ public class LandingPageMember extends javax.swing.JFrame {
   private javax.swing.JSeparator garis;
   private javax.swing.JLabel instagram;
   private javax.swing.JLabel kenapaSiRental;
+  private javax.swing.JLabel lblNamaMember;
   private javax.swing.JLabel logo;
   private javax.swing.JPanel mainPage;
-  private javax.swing.JLabel namaLogin;
   private javax.swing.JPanel navbar;
   private javax.swing.JLabel profile;
   // End of variables declaration//GEN-END:variables

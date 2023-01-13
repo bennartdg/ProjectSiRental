@@ -44,24 +44,27 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="SiRental" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="418" max="32767" attributes="0"/>
-                  <Component id="btnLogin" min="-2" pref="75" max="-2" attributes="0"/>
+                  <EmptySpace pref="413" max="32767" attributes="0"/>
+                  <Component id="btnLogin" min="-2" pref="90" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnRegister" min="-2" pref="75" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="btnRegister" min="-2" pref="84" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SiRental" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnRegister" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnRegister" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="SiRental" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="btnLogin" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -104,7 +107,7 @@
         <Component class="javax.swing.JButton" name="btnRegister">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="cc" type="rgb"/>
+              <Color blue="46" green="0" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -152,7 +155,7 @@
                           <Component id="garis" alignment="0" max="32767" attributes="0"/>
                           <Component id="kenapaSiRental" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="btnsewa2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDaftarSekarang" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="instagram" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -161,7 +164,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace pref="8" max="32767" attributes="0"/>
                   <Component id="logo" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -186,9 +189,9 @@
                   <Component id="baris3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="baris4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="btnsewa2" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnDaftarSekarang" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace pref="133" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="instagram" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="facebook" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -201,6 +204,11 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="logo">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\sirental.jpeg"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="kenapaSiRental">
           <Properties>
@@ -259,7 +267,7 @@
             <Property name="text" type="java.lang.String" value="berkendara anda"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnsewa2">
+        <Component class="javax.swing.JButton" name="btnDaftarSekarang">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
@@ -267,13 +275,16 @@
             <Property name="text" type="java.lang.String" value="Daftar Sekarang"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnsewa2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDaftarSekarangActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="instagram">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\instagram.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SIRental"/>
           </Properties>
@@ -283,6 +294,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\facebook.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SI_Rental"/>
           </Properties>
         </Component>
@@ -290,6 +304,9 @@
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="C:\Users\benna\OneDrive\Documents\Itenas Doc Ben\PROGRAMING LANGUAGE\Java\OOP\OOPRegulerFinal\ProjectSiRental\SiRental\src\main\java\com\oop\reguler\SiRental\swing\resources\email.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="sirental205@gmail.com"/>
           </Properties>

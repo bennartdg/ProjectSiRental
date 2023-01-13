@@ -8,7 +8,9 @@ package com.oop.reguler.SiRental.swing.login;
 import com.oop.reguler.SiRental.pojo.Admin;
 import com.oop.reguler.SiRental.service.AdminService;
 import com.oop.reguler.SiRental.serviceimpl.AdminServiceImpl;
+import com.oop.reguler.SiRental.swing.admin.DataMember;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
@@ -19,7 +21,7 @@ import javax.swing.JOptionPane;
 public class LoginAdmin extends javax.swing.JFrame {
 
   AdminService adminService = new AdminServiceImpl();
-  //TODO: AdminMenu adminMenu
+  DataMember dataMember;
   Admin admin;
   String username, password;
   boolean login = false;
@@ -72,6 +74,8 @@ public class LoginAdmin extends javax.swing.JFrame {
 
     leftPage.setBackground(new java.awt.Color(255, 255, 255));
     leftPage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\car icon.png")); // NOI18N
     leftPage.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-170, 0, 740, 440));
 
     getContentPane().add(leftPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 440));
@@ -119,6 +123,11 @@ public class LoginAdmin extends javax.swing.JFrame {
     txtpassword.setForeground(new java.awt.Color(255, 255, 255));
     txtpassword.setBorder(null);
     txtpassword.setCaretColor(new java.awt.Color(255, 255, 255));
+    txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+      public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtpasswordKeyPressed(evt);
+      }
+    });
     rightPage.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 240, 30));
 
     jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -145,6 +154,7 @@ public class LoginAdmin extends javax.swing.JFrame {
     });
     rightPage.add(btnlogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 290, 40));
 
+    btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\back-button.png")); // NOI18N
     btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         btnBackMouseClicked(evt);
@@ -177,16 +187,20 @@ public class LoginAdmin extends javax.swing.JFrame {
       password = txtpassword.getText();
 
       try {
-        admin = adminService.login(username, password);
-
-        if (admin != null) {
-          admin.setLoginStatus(true);
-          JOptionPane.showMessageDialog(null, "Login Berhasil!");
-          //TODO: adminMenu = new AdminMenu();
-          //adminMenu.setVisible(true);
-          close();
+        if (username.equals("") || password.equals("")) {
+          JOptionPane.showMessageDialog(null, "Isi Username dan Password untuk Login!");
         } else {
-          JOptionPane.showMessageDialog(null, "Login Gagal! Username atau Password salah! Jika belum memiliki akun, silakan melakukan Register!");
+          admin = adminService.login(username, password);
+
+          if (admin != null) {
+            admin.setLoginStatus(true);
+            JOptionPane.showMessageDialog(null, "Login Berhasil!");
+            dataMember = new DataMember(admin);
+            dataMember.setVisible(true);
+            close();
+          } else {
+            JOptionPane.showMessageDialog(null, "Login Gagal! Username atau Password salah!");
+          }
         }
       } catch (Exception e) {
         JOptionPane.showMessageDialog(null, e + ": Server dalam keadaan tidak menyala atau down!");
@@ -218,6 +232,38 @@ public class LoginAdmin extends javax.swing.JFrame {
   private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
     // TODO add your handling code here:
   }//GEN-LAST:event_txtusernameActionPerformed
+
+  private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+    String user = txtusername.getText();
+    String pass = txtpassword.getText();
+
+    try {
+      if ((evt.getKeyCode() == KeyEvent.VK_ENTER)) {
+        if (user.equals("") || pass.equals("")) {
+          JOptionPane.showMessageDialog(null, "Isi Username dan Password untuk Login!");
+        } else {
+          if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            username = txtusername.getText();
+            password = txtpassword.getText();
+
+            admin = adminService.login(username, password);
+
+            if (admin != null) {
+              admin.setLoginStatus(true);
+              JOptionPane.showMessageDialog(null, "Login Berhasil!");
+              dataMember = new DataMember(admin);
+              dataMember.setVisible(true);
+              close();
+            } else {
+              JOptionPane.showMessageDialog(null, "Login Gagal! Username atau Password salah!");
+            }
+          }
+        }
+      }
+    } catch (Exception e) {
+      JOptionPane.showMessageDialog(null, e + ": Server dalam keadaan tidak menyala atau down!");
+    }
+  }//GEN-LAST:event_txtpasswordKeyPressed
 
   /**
    * @param args the command line arguments

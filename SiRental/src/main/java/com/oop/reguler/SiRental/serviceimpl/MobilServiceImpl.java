@@ -33,11 +33,9 @@ public class MobilServiceImpl implements MobilService {
   public List<Mobil> findAll() {
     List<Mobil> listMobil = new ArrayList<>();
     Mobil mobil = null;
-    String sql = "SELECT mbl.IDMOBIL, mbl.IDMEMBER, mbr.IDMEMBER, mbl.PLATNO, "
-        + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
-        + "mbl.TAHUNKELUAR, mbl.HARGA, mbl.STATUS "
-        + "FROM mobil mbl, member mbr "
-        + "WHERE mbl.STATUS = 'ON'";
+    Member member = null;
+
+    String sql = "SELECT * FROM mobil";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -50,6 +48,11 @@ public class MobilServiceImpl implements MobilService {
         mobil = new Mobil();
 
         mobil.setIdMobil(rs.getInt("IDMOBIL"));
+
+        member = new Member();
+        member.setIdMember(rs.getInt("IDMEMBER"));
+        mobil.setMember(member);
+
         mobil.setPlatNo(rs.getString("PLATNO"));
         mobil.setMerk(rs.getString("MERK"));
         mobil.setWarna(rs.getString("WARNA"));
@@ -65,9 +68,50 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
 
+    return listMobil;
+  }
+
+  public List<Mobil> findAllMobilCustomer() {
+    List<Mobil> listMobil = new ArrayList<>();
+    Mobil mobil = null;
+    Member member = null;
+    String sql = "SELECT * FROM mobil WHERE STATUS = 'ON'";
+
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        mobil = new Mobil();
+
+        mobil.setIdMobil(rs.getInt("IDMOBIL"));
+
+        member = new Member();
+        member.setIdMember(rs.getInt("IDMEMBER"));
+        mobil.setMember(member);
+
+        mobil.setPlatNo(rs.getString("PLATNO"));
+        mobil.setMerk(rs.getString("MERK"));
+        mobil.setWarna(rs.getString("WARNA"));
+        mobil.setJenis(rs.getString("JENIS"));
+        mobil.setKapasitas(rs.getInt("KAPASITAS"));
+        mobil.setTransmisi(rs.getString("TRANSMISI").charAt(0));
+        mobil.setTahunKeluar(rs.getInt("TAHUNKELUAR"));
+        mobil.setHarga(rs.getDouble("HARGA"));
+        mobil.setStatus(rs.getString("STATUS"));
+
+        listMobil.add(mobil);
+      }
+    } catch (SQLException ex) {
+      Logger.getLogger(MobilServiceImpl.class.getName())
+              .log(Level.SEVERE, null, ex);
+    }
     return listMobil;
   }
 
@@ -75,10 +119,10 @@ public class MobilServiceImpl implements MobilService {
     List<Mobil> listMobil = new ArrayList<>();
     Mobil mobil = null;
     String sql = "SELECT mbl.IDMOBIL, mbl.PLATNO, "
-        + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
-        + "mbl.TAHUNKELUAR, mbl.HARGA, mbl.STATUS "
-        + "FROM mobil mbl "
-        + "WHERE mbl.IDMEMBER = " + member.getIdMember();
+            + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
+            + "mbl.TAHUNKELUAR, mbl.HARGA, mbl.STATUS "
+            + "FROM mobil mbl "
+            + "WHERE mbl.IDMEMBER = " + member.getIdMember();
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -107,7 +151,7 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return listMobil;
   }
@@ -117,20 +161,20 @@ public class MobilServiceImpl implements MobilService {
     int result = 0;
 
     String sql = "INSERT INTO mobil ("
-        + "IDMEMBER, PLATNO, MERK, WARNA, "
-        + "JENIS, KAPASITAS, TRANSMISI, "
-        + "TAHUNKELUAR, HARGA, STATUS) "
-        + "VALUES ("
-        + "" + object.getMember().getIdMember() + ", "
-        + "'" + object.getPlatNo() + "', "
-        + "'" + object.getMerk() + "', "
-        + "'" + object.getWarna() + "', "
-        + "'" + object.getJenis() + "', "
-        + "" + object.getKapasitas() + ", "
-        + "'" + object.getTransmisi() + "', "
-        + "" + object.getTahunKeluar() + ", "
-        + "" + object.getHarga() + ", "
-        + "'ON')";
+            + "IDMEMBER, PLATNO, MERK, WARNA, "
+            + "JENIS, KAPASITAS, TRANSMISI, "
+            + "TAHUNKELUAR, HARGA, STATUS) "
+            + "VALUES ("
+            + "" + object.getMember().getIdMember() + ", "
+            + "'" + object.getPlatNo() + "', "
+            + "'" + object.getMerk() + "', "
+            + "'" + object.getWarna() + "', "
+            + "'" + object.getJenis() + "', "
+            + "" + object.getKapasitas() + ", "
+            + "'" + object.getTransmisi() + "', "
+            + "" + object.getTahunKeluar() + ", "
+            + "" + object.getHarga() + ", "
+            + "'ON')";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -141,7 +185,7 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
 
     return result;
@@ -152,16 +196,16 @@ public class MobilServiceImpl implements MobilService {
     int result = 0;
 
     String sql = "UPDATE mobil SET "
-        + "PLATNO = '" + object.getPlatNo() + "', "
-        + "MERK = '" + object.getMerk() + "', "
-        + "WARNA = '" + object.getWarna() + "', "
-        + "JENIS = '" + object.getJenis() + "', "
-        + "KAPASITAS = '" + object.getKapasitas() + "', "
-        + "TRANSMISI = '" + object.getTransmisi() + "', "
-        + "TAHUNKELUAR = " + object.getTahunKeluar() + ", "
-        + "HARGA = " + object.getHarga() + ", "
-        + "STATUS = '" + object.getStatus() + "' "
-        + "WHERE IDMOBIL = " + object.getIdMobil() + "";
+            + "PLATNO = '" + object.getPlatNo() + "', "
+            + "MERK = '" + object.getMerk() + "', "
+            + "WARNA = '" + object.getWarna() + "', "
+            + "JENIS = '" + object.getJenis() + "', "
+            + "KAPASITAS = '" + object.getKapasitas() + "', "
+            + "TRANSMISI = '" + object.getTransmisi() + "', "
+            + "TAHUNKELUAR = " + object.getTahunKeluar() + ", "
+            + "HARGA = " + object.getHarga() + ", "
+            + "STATUS = '" + object.getStatus() + "' "
+            + "WHERE IDMOBIL = " + object.getIdMobil() + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -182,11 +226,11 @@ public class MobilServiceImpl implements MobilService {
     Member member = null;
 
     String sql = "SELECT mbl.IDMOBIL, mbr.IDMEMBER, mbl.PLATNO, "
-        + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
-        + "mbl.TAHUNKELUAR, mbl.HARGA "
-        + "FROM mobil mbl, member mbr "
-        + "WHERE mbl.IDMEMBER = mbr.IDMEMBER "
-        + "AND mbl.IDMOBIL = " + id + "";
+            + "mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
+            + "mbl.TAHUNKELUAR, mbl.HARGA "
+            + "FROM mobil mbl, member mbr "
+            + "WHERE mbl.IDMEMBER = mbr.IDMEMBER "
+            + "AND mbl.IDMOBIL = " + id + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -216,9 +260,53 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return mobil;
+  }
+
+  public List<Mobil> findByMerk(String merk) {
+    List<Mobil> listMobil = new ArrayList<>();
+    Mobil mobil = new Mobil();
+    Member member = null;
+
+    String sql = "SELECT * from MOBIL "
+            + "WHERE MERK LIKE '%" + merk + "%' AND STATUS = 'ON'";
+    
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery(sql);
+
+      while (rs.next()) {
+        mobil = new Mobil();
+
+        mobil.setIdMobil(rs.getInt("IDMOBIL"));
+
+        member = new Member();
+        member.setIdMember(rs.getInt("IDMEMBER"));
+        mobil.setMember(member);
+
+        mobil.setPlatNo(rs.getString("PLATNO"));
+        mobil.setMerk(rs.getString("MERK"));
+        mobil.setWarna(rs.getString("WARNA"));
+        mobil.setJenis(rs.getString("JENIS"));
+        mobil.setKapasitas(rs.getInt("KAPASITAS"));
+        mobil.setTransmisi(rs.getString("TRANSMISI").charAt(0));
+        mobil.setTahunKeluar(rs.getInt("TAHUNKELUAR"));
+        mobil.setHarga(rs.getDouble("HARGA"));
+        mobil.setStatus(rs.getString("STATUS"));
+
+        listMobil.add(mobil);
+      }
+    } catch (SQLException ex) {
+      Logger.getLogger(MobilServiceImpl.class.getName())
+              .log(Level.SEVERE, null, ex);
+    }
+    
+    return listMobil;
   }
 
   @Override
@@ -235,7 +323,7 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return result;
 
@@ -253,7 +341,7 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return result;
   }
@@ -270,7 +358,7 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
 
     return result;
@@ -281,10 +369,10 @@ public class MobilServiceImpl implements MobilService {
     Member member = null;
 
     String sql = "SELECT t.IDMOBIL, t.IDMEMBER, "
-        + "mbl.PLATNO, mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
-        + "mbl.TAHUNKELUAR, mbl.STATUS, mbl.HARGA "
-        + "FROM transaksi t, mobil mbl "
-        + "WHERE t.IDCUSTOMER = " + customer.getIdCustomer() + " AND mbl.STATUS = 'OFF'";
+            + "mbl.PLATNO, mbl.MERK, mbl.WARNA, mbl.JENIS, mbl.KAPASITAS, mbl.TRANSMISI, "
+            + "mbl.TAHUNKELUAR, mbl.STATUS, mbl.HARGA "
+            + "FROM transaksi t, mobil mbl "
+            + "WHERE t.IDCUSTOMER = " + customer.getIdCustomer() + " AND mbl.STATUS = 'OFF'";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -314,7 +402,7 @@ public class MobilServiceImpl implements MobilService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MobilServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return mobil;
   }

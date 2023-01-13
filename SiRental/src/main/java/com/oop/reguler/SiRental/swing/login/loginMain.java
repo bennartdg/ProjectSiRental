@@ -59,6 +59,8 @@ public class LoginMain extends javax.swing.JFrame {
 
     leftPage.setBackground(new java.awt.Color(255, 255, 255));
     leftPage.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+    logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\car icon.png")); // NOI18N
     leftPage.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-100, 0, 520, 440));
 
     getContentPane().add(leftPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 0, -1, 440));
@@ -120,6 +122,7 @@ public class LoginMain extends javax.swing.JFrame {
     });
     rightPage.add(btnCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 160, 40));
 
+    btnBack.setIcon(new javax.swing.ImageIcon("C:\\Users\\benna\\OneDrive\\Documents\\Itenas Doc Ben\\PROGRAMING LANGUAGE\\Java\\OOP\\OOPRegulerFinal\\ProjectSiRental\\SiRental\\src\\main\\java\\com\\oop\\reguler\\SiRental\\swing\\resources\\back-button.png")); // NOI18N
     btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
         btnBackMouseClicked(evt);
