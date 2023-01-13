@@ -9,20 +9,11 @@ package com.oop.reguler.SiRental.pojo;
  * @author Ben
  */
 public class Akun {
-  private int id;
   private String username;
   private String password;
   private String level;
 
   public Akun() {
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public String getUsername() {

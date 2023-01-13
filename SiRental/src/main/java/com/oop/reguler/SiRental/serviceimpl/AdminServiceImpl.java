@@ -31,9 +31,9 @@ public class AdminServiceImpl implements AdminService {
     Admin admin = null;
     Akun akun = null;
     String sql = "SELECT AD.IDADMIN, AD.SALDO, "
-            + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
+            + "AK.USERNAME, AK.PASSWORD, AK.LEVEL "
             + "FROM ADMIN AD, AKUN AK "
-            + "WHERE AD.IDAKUN = AK.IDAKUN "
+            + "WHERE AD.USERNAME = AK.USERNAME "
             + "AND AK.USERNAME = '" + username + "' "
             + "AND AK.PASSWORD = '" + password + "'";
 
@@ -50,7 +50,6 @@ public class AdminServiceImpl implements AdminService {
         admin.setSaldo(rs.getDouble("SALDO"));
 
         akun = new Akun();
-        akun.setId(rs.getInt("IDAKUN"));
         akun.setUsername(rs.getString("USERNAME"));
         akun.setUsername(rs.getString("PASSWORD"));
         akun.setLevel(rs.getString("LEVEL"));
@@ -65,5 +64,4 @@ public class AdminServiceImpl implements AdminService {
 
     return admin;
   }
-
 }

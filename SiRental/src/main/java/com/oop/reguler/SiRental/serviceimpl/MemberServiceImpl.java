@@ -34,13 +34,13 @@ public class MemberServiceImpl implements MemberService {
     Akun akun = null;
 
     String sql = "SELECT M.IDMEMBER, "
-        + "M.NAMA, M.JENISKELAMIN, M.ALAMAT, "
-        + "M.TELEPON, M.SALDO, "
-        + "AK.IDAKUN, AK.USERNAME, AK.PASSWORD, AK.LEVEL "
-        + "FROM MEMBER M, AKUN AK "
-        + "WHERE M.IDAKUN = AK.IDAKUN "
-        + "AND AK.USERNAME = '" + username + "' "
-        + "AND AK.PASSWORD = '" + password + "'";
+            + "M.NAMA, M.JENISKELAMIN, M.ALAMAT, "
+            + "M.TELEPON, M.SALDO, "
+            + "AK.USERNAME, AK.PASSWORD, AK.LEVEL "
+            + "FROM MEMBER M, AKUN AK "
+            + "WHERE M.USERNAME = AK.USERNAME "
+            + "AND AK.USERNAME = '" + username + "' "
+            + "AND AK.PASSWORD = '" + password + "'";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -59,7 +59,6 @@ public class MemberServiceImpl implements MemberService {
         member.setSaldo(rs.getDouble("SALDO"));
 
         akun = new Akun();
-        akun.setId(rs.getInt("IDAKUN"));
         akun.setUsername(rs.getString("USERNAME"));
         akun.setPassword(rs.getString("PASSWORD"));
         akun.setLevel(rs.getString("LEVEL"));
@@ -102,7 +101,7 @@ public class MemberServiceImpl implements MemberService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MemberServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
 
     return listMember;
@@ -111,12 +110,13 @@ public class MemberServiceImpl implements MemberService {
   @Override
   public Object create(Member object) {
     int result = 0;
-    String sql = "INSERT INTO member(NAMA, JENISKELAMIN, ALAMAT, TELEPON) "
-        + "VALUES('" + object.getIdMember() + "', "
-        + "'" + object.getNama() + "', "
-        + "'" + object.getJenisKelamin() + "', "
-        + "'" + object.getAlamat() + "', "
-        + "'" + object.getTelepon() + "')";
+    String sql = "INSERT INTO member(NAMA, JENISKELAMIN, ALAMAT, TELEPON, USERNAME) "
+            + "VALUES("
+            + "'" + object.getNama() + "', "
+            + "'" + object.getJenisKelamin() + "', "
+            + "'" + object.getAlamat() + "', "
+            + "'" + object.getTelepon() + "', "
+            + "'" + object.getAkun().getUsername() + "')";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -127,8 +127,30 @@ public class MemberServiceImpl implements MemberService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MemberServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
+    return result;
+  }
+
+  public Object create(Akun object) {
+    int result = 0;
+    String sql = "INSERT INTO akun (USERNAME, PASSWORD, LEVEL) "
+            + "VALUES ('" + object.getUsername() + "', "
+            + "'" + object.getPassword() + "', "
+            + "'customer')";
+    
+    conMan = new ConnectionManager();
+    conn = conMan.connect();
+
+    try {
+      stmt = conn.createStatement();
+      stmt.executeUpdate(sql);
+      conMan.disconnect();
+    } catch (SQLException ex) {
+      Logger.getLogger(MemberServiceImpl.class.getName())
+              .log(Level.SEVERE, null, ex);
+    }
+    
     return result;
   }
 
@@ -136,10 +158,10 @@ public class MemberServiceImpl implements MemberService {
   public Object update(Member object) {
     int result = 0;
     String sql = "UPDATE member SET NAMA = '" + object.getNama() + "', "
-        + "JENISKELAMIN = '" + object.getJenisKelamin() + "', "
-        + "ALAMAT = '" + object.getAlamat() + "', "
-        + "TELEPON = '" + object.getTelepon() + "' "
-        + "WHERE IDMEMBER = " + object.getIdMember() + "";
+            + "JENISKELAMIN = '" + object.getJenisKelamin() + "', "
+            + "ALAMAT = '" + object.getAlamat() + "', "
+            + "TELEPON = '" + object.getTelepon() + "' "
+            + "WHERE IDMEMBER = " + object.getIdMember() + "";
 
     conMan = new ConnectionManager();
     conn = conMan.connect();
@@ -177,7 +199,7 @@ public class MemberServiceImpl implements MemberService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MemberServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return member;
   }
@@ -196,7 +218,7 @@ public class MemberServiceImpl implements MemberService {
       conMan.disconnect();
     } catch (SQLException ex) {
       Logger.getLogger(MemberServiceImpl.class.getName())
-          .log(Level.SEVERE, null, ex);
+              .log(Level.SEVERE, null, ex);
     }
     return result;
   }
